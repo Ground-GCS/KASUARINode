@@ -1,0 +1,11 @@
+{
+  "name": "variables",
+  "version": "0.0.1",
+  "private": true,
+  
+  "dependencies": {
+    "express": "latest",
+    "express.io" : "latest",
+    "socket.io": "latest"
+  }
+}

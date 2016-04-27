@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="description" content="HTML5">
+        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+        <meta name="author" content="Rodolfo Vera">
+        <title>Proyecto: Monitoreo Remoto de la Temperatura</title>
+    </head>
+    <style>
+        article{
+            width: 1000px;
+            height: 500px;
+            border: 2px solid black;
+            margin: 70px auto;
+           
+            text-align: center;
+        }
+        #micanvas{
+             margin: 0px auto;
+        }
+       
+    </style>
+
+    <body onload="inicio()"> 
+        <article>
+            <h1> Split Data </h1>
+           
+            <div id="temperature"> 0</div>
+            <div id="kelembaban"> 0</div>
+            <div id="ketinggian"> 0</div>
+            <div id="tekanan"> 0</div>
+            <div id="kecepatan"> 0</div>
+            <div id="arah"> 0</div>
+
+            <canvas  id="micanvas" width="1000px" height="170px"  >
+                canvas
+            </canvas> 
+            <canvas id="mycanvas" width="689" height="208">
+               caas
+            </canvas> 
+
+        </article  >
+    </body>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://smoothiecharts.org/smoothie.js"></script>
+   
+    <script>
+        var datahasil;
+        var temperature;
+        function inicio(){
+
+            var socket = io.connect();
+            var micanvas = document.getElementById("micanvas");
+            var ctx = micanvas.getContext("2d");
+            var ancho = micanvas.width;
+            var alto = micanvas.height;
+            var x = 200;
+            var y = 100;
+
+                socket.on("data", function(data){  //dibuja 
+                
+                    ctx.clearRect(0,0,ancho,alto);
+                    ctx.font = "2em Calibri"; 
+                    ctx.fillStyle = "black"; 
+                 
+                    $("#temperature").text(data.datahasil[0]); //Deklarasi Variable
+                    $("#kelembaban").text(data.datahasil[1]); //Deklarasi Variable
+                    $("#ketinggian").text(data.datahasil[2]); //Deklarasi Variable
+                    $("#tekanan").text(data.datahasil[3]); //Deklarasi Variable
+                    $("#kecepatan").text(data.datahasil[4]); //Deklarasi Variable
+                    $("#arah").text(data.datahasil[5]); //Deklarasi Variable
+                
+                    ctx.fillText(+ data.datahasil[2] ,x,y);
+                    ctx.fillText("°C",x+100,y);      
+                }); 
+                //Chart
+
+                var smoothie = new SmoothieChart({millisPerPixel:100,scaleSmoothing:1,grid:{verticalSections:11},timestampFormatter:SmoothieChart.timeFormatter,maxValue:100,minValue:-10});
+                    smoothie.streamTo(document.getElementById("mycanvas"), 5000 /*delay*/);
+               // DatOos
+                var line1 = new TimeSeries();
+                 // Añadimos el valor de la Temperatura al eje Y
+                setInterval(function() {
+                 line1.append(new Date().getTime(), datahasil[2]);      
+                 }, 5000);
+
+                // Add to SmoothieChart
+                smoothie.addTimeSeries(line1);
+        
+         }   
+                 
+    </script>
+</html>
