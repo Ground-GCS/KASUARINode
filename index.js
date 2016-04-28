@@ -42,7 +42,8 @@ myPort.on("open", function (RAWData) {
 
         var RAWData = data.toString();
         RAWData = RAWData.replace(/(\r\n|\n|\r)/gm,"");
-        console.log(RAWData);
+        /* Tampilin Data RAW ke terminal*/
+     //   console.log(RAWData);
 
 
         var datahasil = RAWData.split(' ');
