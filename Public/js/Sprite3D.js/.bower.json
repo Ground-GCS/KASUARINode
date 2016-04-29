@@ -1,0 +1,30 @@
+{
+  "name": "Sprite3D.js",
+  "main": "Sprite3D.js",
+  "version": "2.0.2",
+  "homepage": "https://github.com/boblemarin/Sprite3D.js",
+  "authors": [
+    "emeric@minimal.be"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.2",
+    "commit": "9b56437d08b18316d80f69a56ebedb62c7dfa7b8"
+  },
+  "_source": "https://github.com/boblemarin/Sprite3D.js.git",
+  "_target": "^2.0.2",
+  "_originalSource": "sprite3d",
+  "_direct": true
+}

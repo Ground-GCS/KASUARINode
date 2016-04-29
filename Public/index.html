@@ -22,10 +22,13 @@
   <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.3.css" />
   <link href="css/icheck/flat/green.css" rel="stylesheet" />
   <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet/less" type="text/css" href="less/sikap.less">
 
   <script src="js/jquery.min.js"></script>
   <script src="js/nprogress.js"></script>
   <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script src="js/d3/d3.js"> </script>
+  <script src="js/Sprite3D.js/Sprite3D.js"> </script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -248,7 +251,7 @@
             <div class="left"></div>
             <div class="right">
               <span class="count_top green"><i class="fa fa-clock-o"></i> Z  Axis</span>
-              <div class="count green" id="Yaxis">0</div>
+              <div class="count green" id="Zaxis">0</div>
             
             </div>
           </div>
@@ -334,7 +337,7 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  
+                  <div id="sikap" style=" margin-left: 250px; margin-top: 180px; margin-bottom: 180px; margin-right: 250px;" align="center"></div>
                 </div>
               </div>
             </div>
@@ -356,7 +359,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Copyright Satrya Budi Pratama made with Love <a href="https:github.com/noczero">| Zero-Inside</a>
+            Copyright Satrya Budi Pratama made with ♥ <a href="https:github.com/noczero">| Zero-Inside</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -541,7 +544,7 @@
 
     <script>
       var datahasil;
-      var Header,Waktu,Ketinggian,Temperature,Kelembaban,Tekanan,ArahAngin,KecAngin,Lintang,Bujur;
+      var Header,Waktu,Ketinggian,Temperature,Kelembaban,Tekanan,ArahAngin,KecAngin,Lintang,Bujur,Roll,Pitch,Yaw;
       var totalPoints = 300;
       var res = [],
           TempRes = [],
@@ -613,19 +616,6 @@
 
       updategraph();
 
-      // Create the LatLngBounds object that will be used to fit the view to the points range and
-      // place the markers to the polyline's points
-      // var latLngBounds = new google.maps.LatLngBounds();
-      // for(var i = 0; i < path.length; i++) {
-      //   latLngBounds.extend(path[i]);
-      //   // Place the marker
-      //   new google.maps.Marker({
-      //     map: map,
-      //     position: path[i],
-      //     title: "Point " + (i + 1)
-      //   });
-      // }
-
       //Mulai
       function update() {
         // body...
@@ -634,6 +624,7 @@
         socket.on("data", function(data){
           //Deklarasi Variabe
           //ke ID
+
         Header = data.datahasil[0];
         Waktu = parseInt(data.datahasil[1]);
         Ketinggian = parseInt(data.datahasil[2]);
@@ -644,6 +635,10 @@
         KecAngin = parseInt(data.datahasil[7]);
         Lintang = parseInt(data.datahasil[8]);
         Bujur = parseInt(data.datahasil[9]);
+        Roll = parseInt(data.datahasil[10]);
+        Pitch = parseInt(data.datahasil[11]);
+        Yaw = parseInt(data.datahasil[12]);
+
           //Tampil ke id class
         $("#header").html(Header);
         $("#waktu").html(Waktu);
@@ -655,6 +650,9 @@
         $("#KecAngin").html(KecAngin);
         $("#lintang").html(Lintang);
         $("#bujur").html(Bujur);
+        $("#Xaxis").html(Roll);
+        $("#Yaxis").html(Pitch);
+        $("#Zaxis").html(Yaw);
         
           // Cara Panggil langsung text
         //$("#arah").text(data.datahasil[8]);
@@ -672,19 +670,17 @@
         TekananRes.push([totalPoints, Tekanan]);
         TekananRes.shift();
 
-        //Maps
-        //path.push(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-
         //Flot JS Graph
-
         for (i=0;i<totalPoints; i++) { 
           res[i][0]=i;
           TempRes[i][0]=i;
           KecRes[i][0]=i;
           TekananRes[i][0]=i;
         }
-       // plot.SetData([ res ]);
+        //plot.SetData([ res ]);
         //plot.draw();
+
+        box.rotation(Roll, Pitch, Yaw).update();
 
         });
       }
@@ -762,6 +758,25 @@
           timeout: 10 * 100 // 10 seconds
         });
       });
+      /*End Maps Data*/
+
+      /*Start SIkap Data*/
+     var stage = Sprite3D.stage(document.querySelector("#sikap"));
+
+     var box = Sprite3D.box(200,50,100, ".box1");
+     box.rotation(0,0,0)
+     box.update();
+    // stage.setInnerHTML("sikap")
+     stage.appendChild(box);
+      // var box = stage.appendChild(
+      //     Sprite3D
+      //     .box(100, 60, 150, ".box1")
+      //     //.rotation(0, -0, 0)
+      //     //.seltPosition(10,20,30)
+      //     //setInnerHTML('sikap')
+      //    // .update()
+
+      // );
 
     </script>
 

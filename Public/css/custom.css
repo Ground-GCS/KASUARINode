@@ -1,3 +1,14 @@
+.box1 {
+  -webkit-transition: all .4s ease-in-out;
+}
+
+.box1 .front { background: rgba(255,0,0,1); }
+.box1 .back { background: rgba(0,255,0,0.55); }
+.box1 .left { background: rgba(0,0,255,0.55); }
+.box1 .right { background: rgba(255,255,0,0.55); }
+.box1 .bottom { background: rgba(255,0,255,1); }
+.box1 .top { background: rgba(0,255,255,1); }
+
 body.nav-sm .container.body .left_col {
   width: 70px;
   padding: 0;
