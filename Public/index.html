@@ -29,6 +29,9 @@
   <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <script src="js/d3/d3.js"> </script>
   <script src="js/Sprite3D.js/Sprite3D.js"> </script>
+  <script src="js/canv-gauge/gauge.js"></script>
+<!--   <script src="js/angular-canvas-gauge.js"></script>
+  <script src="js/angular/angular.js"></script> -->
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -43,7 +46,7 @@
 </head>
 
 
-<body class="nav-md" onload="update()">
+<body class="nav-md" onload="update()" ng-app="appSampleMod" ng-controller="appSampleCtrl">
 
   <div class="container body">
 
@@ -343,6 +346,44 @@
             </div>
 
         </div>
+    <!-- Gauge -->
+        <div class="row">
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                <canvas id="gaugetemp" width="200" height="200"></canvas>           
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                  <canvas id="gaugekel" width="200" height="200"></canvas>           
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                  <canvas id="gaugetek" width="200" height="200"></canvas>           
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                  <canvas id="gaugekec" width="200" height="200"></canvas>           
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                <canvas id="gaugearah" width="200" height="200"></canvas>           
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="x_content">
+                  <canvas id="gaugetinggi" width="200" height="200"></canvas>           
+            </div>
+          </div>
+
+         </div>
 
         <div class="row">
 
@@ -383,8 +424,10 @@
   <script src="js/gmaps.js"></script>
 
   <!-- gauge js -->
-  <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-  <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
+ <!--  <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
+  <script type="text/javascript" src="js/gauge/gauge_demo.js"></script> -->
+
+ 
   <!-- bootstrap progress js -->
   <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
   <!-- icheck -->
@@ -409,132 +452,7 @@
   <script type="text/javascript" src="js/flot/curvedLines.js"></script>
   <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
 
-
-
-
-
-  <script>
-    $(document).ready(function() {
-      // [17, 74, 6, 39, 20, 85, 7]
-      //[82, 23, 66, 9, 99, 6, 2]
-      var data1 = [
-        [gd(2012, 1, 1), 17],
-        [gd(2012, 1, 2), 74],
-        [gd(2012, 1, 3), 6],
-        [gd(2012, 1, 4), 39],
-        [gd(2012, 1, 5), 20],
-        [gd(2012, 1, 6), 85],
-        [gd(2012, 1, 7), 7]
-      ];
-
-      var data2 = [
-        [gd(2012, 1, 1), 82],
-        [gd(2012, 1, 2), 23],
-        [gd(2012, 1, 3), 66],
-        [gd(2012, 1, 4), 9],
-        [gd(2012, 1, 5), 119],
-        [gd(2012, 1, 6), 6],
-        [gd(2012, 1, 7), 9]
-      ];
-      $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-        data1, data2
-      ], {
-        series: {
-          lines: {
-            show: false,
-            fill: true
-          },
-          splines: {
-            show: true,
-            tension: 0.4,
-            lineWidth: 1,
-            fill: 0.4
-          },
-          points: {
-            radius: 0,
-            show: true
-          },
-          shadowSize: 2
-        },
-        grid: {
-          verticalLines: true,
-          hoverable: true,
-          clickable: true,
-          tickColor: "#d5d5d5",
-          borderWidth: 1,
-          color: '#fff'
-        },
-        colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-        xaxis: {
-          tickColor: "rgba(51, 51, 51, 0.06)",
-          mode: "time",
-          tickSize: [1, "day"],
-          //tickLength: 10,
-          axisLabel: "Date",
-          axisLabelUseCanvas: true,
-          axisLabelFontSizePixels: 12,
-          axisLabelFontFamily: 'Verdana, Arial',
-          axisLabelPadding: 10
-            //mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
-        },
-        yaxis: {
-          ticks: 8,
-          tickColor: "rgba(51, 51, 51, 0.06)",
-        },
-        tooltip: false
-      });
-
-      function gd(year, month, day) {
-        return new Date(year, month - 1, day).getTime();
-      }
-    });
-  </script>
-
-  <!-- worldmap -->
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-  <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
-  <!-- pace -->
-  <script src="js/pace/pace.min.js"></script>
-  <script>
-    $(function() {
-      $('#world-map-gdp').vectorMap({
-        map: 'world_mill_en',
-        backgroundColor: 'transparent',
-        zoomOnScroll: false,
-        series: {
-          regions: [{
-            values: gdpData,
-            scale: ['#E6F2F0', '#149B7E'],
-            normalizeFunction: 'polynomial'
-          }]
-        },
-        onRegionTipShow: function(e, el, code) {
-          el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-        }
-      });
-    });
-  </script>
-  <!-- skycons -->
-  <script src="js/skycons/skycons.min.js"></script>
-  <script>
-    var icons = new Skycons({
-        "color": "#73879C"
-      }),
-      list = [
-        "clear-day", "clear-night", "partly-cloudy-day",
-        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-        "fog"
-      ],
-      i;
-
-    for (i = list.length; i--;)
-      icons.set(list[i], list[i]);
-
-    icons.play();
-  </script>
-
+  
   <!-- /footer content -->
 </body>
 
@@ -778,10 +696,531 @@
 
       // );
 
+     /* End Sikap*/
+     /* Gauge Canvas*/
+     // var Gauge = new Gauge({renderTo : 'gaugetemp'});
+     // gauge.onready = function(){
+     //  setInterval( function(){
+     //    gauge.setValue(Temperature);
+     //  }, 1000);
+     // };
+
+     //  gauge.draw();
+
+     //Temperature
+    var gaugetemp = new Gauge({
+            renderTo    : 'gaugetemp',
+            width       : 200,
+            height      : 200,
+            glow        : false,
+            units       : '°C',
+            title       : 'Temperature',
+            minValue    : -50,
+            maxValue    : 50,
+            majorTicks  : ['-50','-40','-30','-20','-10','0','10','20','30','40','50'],
+            minorTicks  : 10,
+            strokeTicks : false,
+            highlights  : [
+                { from : -50, to : 0, color : 'rgba(0,   0, 255, .3)' },
+                { from : 0, to : 50, color : 'rgba(255, 0, 0, .3)' }
+            ],
+            colors: {
+          plate: '#ffffff',
+          majorTicks: '#f1c40f',
+          minorTicks: ' #c0392b',
+          title: '#000000',
+          units: '#000000',
+          numbers: '#000000',
+          needle: {
+              start: 'rgba(200, 50, 50, .75)',
+              end: 'rgba(200, 50, 50, .75)',
+              circle: {
+                  outerStart: 'rgba(200, 200, 200, 1)',
+                  outerEnd: 'rgba(200, 200, 200, 1)'
+              },
+              shadowUp: true,
+              shadowDown: false
+          },
+          circle: {
+              shadow: false,
+              outerStart: '#34495e',
+              outerEnd: '#34495e',
+              middleStart: '#34495e',
+              middleEnd: '#34495e',
+              innerStart: '#34495e',
+              innerEnd: '#34495e'
+          },
+          valueBox: {
+              rectStart: '#34495e',
+              rectEnd: '#34495e',
+              background: '#ffffff',
+              shadow: '#34495e'
+          }
+      },
+      valueBox: {
+          visible: true
+      },
+      valueText: {
+          visible: true
+      },
+      needle: {
+          type: 'arrow',
+          width: 2,
+          end: 72,
+          circle: {
+              size: 7,
+              inner: false,
+              outer: true
+          }
+      },
+      animation: {
+          delay: 10,
+          duration: 1500,
+          fn: 'linear'
+      },
+      updateValueOnAnimation: true
+    });
+
+    gaugetemp.onready = function() {
+      setInterval( function() {
+        gaugetemp.setValue(Temperature);
+      }, 1500);
+    };
+
+    gaugetemp.draw();
+
+    //Kelembanban
+    var gaugekel = new Gauge({
+      renderTo  : 'gaugekel',
+      height: 200,
+      glow: false,
+      units: '%',
+      title: 'Kelembaban',
+      minValue: 0,
+      maxValue: 220,
+      majorTicks: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'],
+      minorTicks: 2,
+      strokeTicks: true,
+      highlights: [{from: 160, to: 220, color: 'rgba(200, 50, 50, .75)'}],
+      colors: {
+          plate: '#ffffff',
+          majorTicks: '#f1c40f',
+          minorTicks: ' #c0392b',
+          title: '#000000',
+          units: '#000000',
+          numbers: '#000000',
+          needle: {
+              start: 'rgba(200, 50, 50, .75)',
+              end: 'rgba(200, 50, 50, .75)',
+              circle: {
+                  outerStart: 'rgba(200, 200, 200, 1)',
+                  outerEnd: 'rgba(200, 200, 200, 1)'
+              },
+              shadowUp: true,
+              shadowDown: false
+          },
+          circle: {
+              shadow: false,
+              outerStart: '#34495e',
+              outerEnd: '#34495e',
+              middleStart: '#34495e',
+              middleEnd: '#34495e',
+              innerStart: '#34495e',
+              innerEnd: '#34495e'
+          },
+          valueBox: {
+              rectStart: '#34495e',
+              rectEnd: '#34495e',
+              background: '#ffffff',
+              shadow: '#34495e'
+          }
+      },
+      valueBox: {
+          visible: true
+      },
+      valueText: {
+          visible: true
+      },
+      needle: {
+          type: 'arrow',
+          width: 2,
+          end: 72,
+          circle: {
+              size: 7,
+              inner: false,
+              outer: true
+          }
+      },
+      animation: {
+          delay: 10,
+          duration: 1500,
+          fn: 'linear'
+      },
+      updateValueOnAnimation: true
+    });
+
+    gaugekel.onready = function() {
+      setInterval( function() {
+        gaugekel.setValue(Kelembaban);
+      }, 1000);
+    };
+
+    gaugekel.draw();
+
+
+    //Tekanan
+    var gaugetek = new Gauge({
+      renderTo   : 'gaugetek',
+      width: 200,
+      height: 200,
+      glow: false,
+      units: 'Pa',
+      title: 'Tekanan',
+      minValue: 0,
+      maxValue: 220,
+      majorTicks: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'],
+      minorTicks: 2,
+      strokeTicks: true,
+      highlights: [{from: 160, to: 220, color: 'rgba(200, 50, 50, .75)'}],
+      colors: {
+          plate: '#ffffff',
+          majorTicks: '#f1c40f',
+          minorTicks: ' #c0392b',
+          title: '#000000',
+          units: '#000000',
+          numbers: '#000000',
+          needle: {
+              start: 'rgba(200, 50, 50, .75)',
+              end: 'rgba(200, 50, 50, .75)',
+              circle: {
+                  outerStart: 'rgba(200, 200, 200, 1)',
+                  outerEnd: 'rgba(200, 200, 200, 1)'
+              },
+              shadowUp: true,
+              shadowDown: false
+          },
+          circle: {
+              shadow: false,
+              outerStart: '#34495e',
+              outerEnd: '#34495e',
+              middleStart: '#34495e',
+              middleEnd: '#34495e',
+              innerStart: '#34495e',
+              innerEnd: '#34495e'
+          },
+          valueBox: {
+              rectStart: '#34495e',
+              rectEnd: '#34495e',
+              background: '#ffffff',
+              shadow: '#34495e'
+          }
+      },
+      valueBox: {
+          visible: true
+      },
+      valueText: {
+          visible: true
+      },
+      needle: {
+          type: 'arrow',
+          width: 2,
+          end: 72,
+          circle: {
+              size: 7,
+              inner: false,
+              outer: true
+          }
+      },
+      animation: {
+          delay: 10,
+          duration: 1500,
+          fn: 'linear'
+      },
+      updateValueOnAnimation: true
+    });
+
+    gaugetek.onready = function() {
+      setInterval( function() {
+        gaugetek.setValue(Tekanan);
+      }, 1000);
+    };
+    gaugetek.draw();
+
+
+    //Kecepatan
+     var gaugekec = new Gauge({
+       renderTo: 'gaugekec',
+            width: 200,
+            height: 200,
+            glow: false,
+            units: 'Km/h',
+            title: 'Kecepatan',
+            minValue: 0,
+            maxValue: 220,
+            majorTicks: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'],
+            minorTicks: 2,
+            strokeTicks: true,
+            highlights: [{from: 160, to: 220, color: 'rgba(200, 50, 50, .75)'}],
+            colors: {
+                plate: '#ffffff',
+                majorTicks: '#f1c40f',
+                minorTicks: ' #c0392b',
+                title: '#000000',
+                units: '#000000',
+                numbers: '#000000',
+                needle: {
+                    start: 'rgba(200, 50, 50, .75)',
+                    end: 'rgba(200, 50, 50, .75)',
+                    circle: {
+                        outerStart: 'rgba(200, 200, 200, 1)',
+                        outerEnd: 'rgba(200, 200, 200, 1)'
+                    },
+                    shadowUp: true,
+                    shadowDown: false
+                },
+                circle: {
+                    shadow: false,
+                    outerStart: '#34495e',
+                    outerEnd: '#34495e',
+                    middleStart: '#34495e',
+                    middleEnd: '#34495e',
+                    innerStart: '#34495e',
+                    innerEnd: '#34495e'
+                },
+                valueBox: {
+                    rectStart: '#34495e',
+                    rectEnd: '#34495e',
+                    background: '#ffffff',
+                    shadow: '#34495e'
+                }
+            },
+            valueBox: {
+                visible: true
+            },
+            valueText: {
+                visible: true
+            },
+            needle: {
+                type: 'arrow',
+                width: 2,
+                end: 72,
+                circle: {
+                    size: 7,
+                    inner: false,
+                    outer: true
+                }
+            },
+            animation: {
+                delay: 10,
+                duration: 1500,
+                fn: 'linear'
+            },
+            updateValueOnAnimation: true
+    });
+
+    gaugekec.onready = function() {
+      setInterval( function() {
+        gaugekec.setValue(KecAngin);
+      }, 1000);
+    };
+    gaugekec.draw();
+
+
+    //Arah
+    var gaugearah = new Gauge({
+           renderTo: 'gaugearah',
+            width: 200,
+            height: 200,
+            glow: false,
+            units: false,
+            title: false,
+            minValue: 0,
+            maxValue: 360,
+            majorTicks: ['S', 'SW', 'W', 'NW', 'N', 'NE', 'E', 'SE', 'S'],
+            minorTicks: 22,
+            ticksAngle: 360,
+            startAngle: 0,
+            strokeTicks: false,
+            highlights: false,
+            colors: {
+                plate: '#222',
+                majorTicks: '#f5f5f5',
+                minorTicks: '#ddd',
+                title: '#fff',
+                units: '#ccc',
+                numbers: '#eee',
+                needle: {
+                    start: 'rgba(240, 128, 128, 1)',
+                    end: 'rgba(255, 160, 122, .9)',
+                    circle: {
+                        outerStart: '#ccc',
+                        outerEnd: '#ccc',
+                        innerStart: '#222',
+                        innerEnd: '#222'
+                    },
+                    shadowUp: false,
+                    shadowDown: false
+                },
+                valueBox: {
+                    rectStart: '#888',
+                    rectEnd: '#666',
+                    background: '#babab2',
+                    shadow: 'rgba(0, 0, 0, 1)'
+                },
+                valueText: {
+                    foreground: '#444',
+                    shadow: 'rgba(0, 0, 0, 0.3)'
+                },
+                 circle: {
+              shadow: false,
+              outerStart: '#34495e',
+              outerEnd: '#34495e',
+              middleStart: '#34495e',
+              middleEnd: '#34495e',
+              innerStart: '#34495e',
+              innerEnd: '#34495e'
+                }
+            },
+            circle: {
+              shadow: false,
+              outerStart: '#34495e',
+              outerEnd: '#34495e',
+              middleStart: '#34495e',
+              middleEnd: '#34495e',
+              innerStart: '#34495e',
+              innerEnd: '#34495e'
+            },
+            needle: {
+                type: 'line',
+                end: 89,
+                start: 65,
+                width: 3,
+                circle: {
+                    size: 15,
+                    inner: false,
+                    outer: true
+                }
+            },
+            valueBox: {
+                visible: false
+            },
+            valueText: {
+                visible: false
+            },
+            animation: {
+                delay: 10,
+                duration: 1000,
+                fn: 'linear'
+            }
+    });
+
+    gaugearah.onready = function() {
+      setInterval( function() {
+        gaugearah.setValue(ArahAngin);
+      }, 1500);
+    };
+
+    gaugearah.draw();
+
+    // TInggi
+    var gaugetinggi = new Gauge({
+      renderTo:'gaugetinggi',
+     width: 200,
+            height: 200,
+            glow: false,
+            units: 'Mdpl',
+            title: 'Tinggi',
+            minValue: 0,
+            maxValue: 10000,
+            majorTicks: ['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000'],
+            minorTicks: 2,
+            strokeTicks: true,
+            highlights: [{from: 5000, to: 10000, color: 'rgba(200, 50, 50, .75)'}],
+            colors: {
+                plate: '#ffffff',
+                majorTicks: '#f1c40f',
+                minorTicks: ' #c0392b',
+                title: '#000000',
+                units: '#000000',
+                numbers: '#000000',
+                needle: {
+                    start: 'rgba(200, 50, 50, .75)',
+                    end: 'rgba(200, 50, 50, .75)',
+                    circle: {
+                        outerStart: 'rgba(200, 200, 200, 1)',
+                        outerEnd: 'rgba(200, 200, 200, 1)'
+                    },
+                    shadowUp: true,
+                    shadowDown: false
+                },
+                circle: {
+                    shadow: false,
+                    outerStart: '#34495e',
+                    outerEnd: '#34495e',
+                    middleStart: '#34495e',
+                    middleEnd: '#34495e',
+                    innerStart: '#34495e',
+                    innerEnd: '#34495e'
+                },
+                valueBox: {
+                    rectStart: '#34495e',
+                    rectEnd: '#34495e',
+                    background: '#ffffff',
+                    shadow: '#34495e'
+                }
+            },
+            valueBox: {
+                visible: true
+            },
+            valueText: {
+                visible: true
+            },
+            needle: {
+                type: 'arrow',
+                width: 2,
+                end: 72,
+                circle: {
+                    size: 7,
+                    inner: false,
+                    outer: true
+                }
+            },
+            animation: {
+                delay: 10,
+                duration: 1500,
+                fn: 'linear'
+            },
+            updateValueOnAnimation: true
+    });
+
+    gaugetinggi.onready = function() {
+      setInterval( function() {
+        gaugetinggi.setValue(Waktu);
+      }, 1500);
+    };
+
+    gaugetinggi.draw();
+
+
+      // var Gauge = new Gauge({ renderTo: 'gaugetemp' });
+      // // now handle initial gauge draw with onready event
+      // gauge.onready = function() {
+      //     // and do update of gauge value each second with the random value
+      //     setInterval( function() {
+      //         gauge.setValue( Math.random() * 100);
+      //     }, 1000);
+      // };
+      // // draw the gauge
+      // gauge.draw();
+
+  
+
+     /* End Gauge Canvas*/
+
     </script>
 
-  <!-- Serial Communication End -->
+  
 
-  <!-- ENd FLot Gafik -->
+  
 
 </html>
