@@ -1,11 +1,33 @@
 {
-  "name": "variables",
-  "version": "0.0.1",
+  "name": "aptrgnode",
+  "version": "1.0.0",
+  "description ": "Serial Communication using Node.js",
   "private": true,
-  
+  "main": "index.js",
   "dependencies": {
+    "bower": "latest",
     "express": "latest",
-    "express.io" : "latest",
+    "express.io": "latest",
+    "serialport": "latest",
     "socket.io": "latest"
-  }
+  },
+  "description": "Node.js Serial Communication v1",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js COM4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APTRG-GCS/KASUARINode.git"
+  },
+  "keywords": [
+    "Serial",
+    "Communication"
+  ],
+  "author": "Satrya Budi Pratama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/APTRG-GCS/KASUARINode/issues"
+  },
+  "homepage": "https://github.com/APTRG-GCS/KASUARINode#readme"
 }
