@@ -129,6 +129,7 @@ var param = {
   dataAdd : function(){
         this.graph.ketinggian.push(this.ketinggian);
         this.graph.temperature.push(this.temperature);
+        this.graph.kelembaban.push(this.kelembaban);
         this.graph.tekanan.push(this.tekanan);
         this.graph.arahAngin.push(this.arahAngin);
         this.graph.kecAngin.push(this.kecAngin);
@@ -170,7 +171,9 @@ app.get('/temp', function(req , res ) {
   });
 });
 
-
+app.get('/data' , function(req , res) {
+  res.json({data : param.graph});
+});
 
 // configure Serial Port to connect to Arduino
 var zeroPort = new SerialPort(
@@ -216,7 +219,7 @@ var logger = fs.createWriteStream('log.txt' , {
   flags : 'a'
 });
 logger.write("ID \t Waktu \t Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2" + "\r\n");
-logger.write("[==========================================================================================]" + "\r\n");
+logger.write("[=============================================================================================]" + "\r\n");
 
 zeroPort.on('open', function() {
   console.log('ZeroSystem-IoT Started');
@@ -254,14 +257,13 @@ zeroPort.on('open', function() {
 
       //get data from arduino
       zeroPort.on('data', function(data) {
-         RAWData = data.toString();
+          RAWData = data.toString();
           RAWData = RAWData.replace(/(\r\n|\n|\r)/gm,""); //word replacer to simply parsing
           datahasil = RAWData.split(','); //split the data with ,
 
           //send event in web server
           if (datahasil[0] == "OK" ) { //header
-            socket.emit('kirim', {datahasil:datahasil}); 
-
+            socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
             param.ketinggian  = datahasil[1];
             param.temperature = datahasil[2]; 
             param.kelembaban  = datahasil[3];
@@ -270,7 +272,18 @@ zeroPort.on('open', function() {
             param.kecAngin    = datahasil[6];
             param.latitude    = datahasil[7];
             param.longitude   = datahasil[8];
-            param.co2         = datahasil[9];    
+            param.co2         = datahasil[9];   
+
+            socket.emit('dataGraph', {  
+              data : [ param.ketinggian,
+              param.temperature,
+              param.kelembaban,
+              param.tekanan,
+              param.arahAngin,
+              param.kecAngin,
+              param.co2]
+            });
+ 
 
             if (param.ketinggian % 50 > 10){
               save = false;
@@ -279,7 +292,7 @@ zeroPort.on('open', function() {
             param.logFile();
             //logger.write(datahasil + '\r\n'); //save log
           }
-          console.log(param.graph);
+
           socket.emit('button', hidup ); //just button to LEDon
           socket.emit('tempDB',  temp); //wtf
           //savedataToFile(datahasil); //baduse

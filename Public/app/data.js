@@ -8,19 +8,6 @@
           TekananRes = [],
           path = [];
 
-      var parameter = {
-        head : '001',
-        Ketinggian : 0 ,
-        Temperature : 0, 
-        Kelembaban : 0,
-        Tekanan : 0,
-        ArahAngin : 0,
-        KecAngin : 0,
-        latitude : 0.0,
-        longitude : 0.0,
-        co2 :0
-      };
-
       function getHumidData(){
           for (var i =0; i < totalPoints; ++i){
             res.push([i,0]);
@@ -94,17 +81,18 @@
           //Deklarasi Variabe
           //ke ID
 
-        
+
         Header = data.datahasil[0];
-        Waktu = parseInt(data.datahasil[1]);
-        Ketinggian = parseInt(data.datahasil[2]);
-        Temperature = parseInt(data.datahasil[3]);
-        Kelembaban = parseInt(data.datahasil[4]);
-        Tekanan = parseInt(data.datahasil[5]);
-        ArahAngin = parseInt(data.datahasil[6]);
-        KecAngin = parseInt(data.datahasil[7]);
-        Lintang = parseInt(data.datahasil[8]);
-        Bujur = parseInt(data.datahasil[9]);
+       // Waktu = parseInt(data.datahasil[1]);
+        Ketinggian = parseInt(data.datahasil[1]);
+        Temperature = parseInt(data.datahasil[2]);
+        Kelembaban = parseInt(data.datahasil[3]);
+        Tekanan = parseInt(data.datahasil[4]);
+        ArahAngin = parseInt(data.datahasil[5]);
+        KecAngin = parseInt(data.datahasil[6]);
+        Lintang = parseFloat(data.datahasil[7]);
+        Bujur = parseFloat(data.datahasil[8]);
+        co2 = parseInt(data.datahasil[9]);
         Roll = parseInt(data.datahasil[10]);
         Pitch = parseInt(data.datahasil[11]);
         Yaw = parseInt(data.datahasil[12]);
@@ -122,10 +110,7 @@
         $("#KecAngin").html(KecAngin);
         $("#lintang").html(Lintang);
         $("#bujur").html(Bujur);
-        $("#Xaxis").html(Roll);
-        $("#Yaxis").html(Pitch);
-        $("#Zaxis").html(Yaw);
-        
+        $("#ppm").html(co2);        
           // Cara Panggil langsung text
         //$("#arah").text(data.datahasil[8]);
         
@@ -428,7 +413,7 @@
       width: 200,
       height: 200,
       glow: false,
-      units: 'Pa',
+      units: 'mbar',
       title: 'Tekanan',
       minValue: 0,
       maxValue: 220,
@@ -507,8 +492,8 @@
             width: 200,
             height: 200,
             glow: false,
-            units: 'Km/h',
-            title: 'Kecepatan',
+            units: 'm/s',
+            title: 'Kecepatan Angin',
             minValue: 0,
             maxValue: 220,
             majorTicks: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'],
@@ -682,8 +667,8 @@
      width: 200,
             height: 200,
             glow: false,
-            units: 'Mdpl',
-            title: 'Tinggi',
+            units: 'meter',
+            title: 'Ketinggian',
             minValue: 0,
             maxValue: 10000,
             majorTicks: ['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000'],
@@ -749,12 +734,91 @@
 
     gaugetinggi.onready = function() {
       setInterval( function() {
-        gaugetinggi.setValue(Waktu);
+        gaugetinggi.setValue(Ketinggian);
       }, 1500);
     };
 
     gaugetinggi.draw();
 
+
+
+var gaugeco2 = new Gauge({
+      renderTo:'gaugeco2',
+     width: 200,
+            height: 200,
+            glow: false,
+            units: 'ppm',
+            title: 'CO2',
+            minValue: 0,
+            maxValue: 5000,
+            majorTicks: ['0', '1000', '2000', '3000', '4000', '5000'],
+            minorTicks: 2,
+            strokeTicks: true,
+            highlights: [{from: 2000, to: 5000, color: 'rgba(200, 50, 50, .75)'}],
+            colors: {
+                plate: '#ffffff',
+                majorTicks: '#f1c40f',
+                minorTicks: ' #c0392b',
+                title: '#000000',
+                units: '#000000',
+                numbers: '#000000',
+                needle: {
+                    start: 'rgba(200, 50, 50, .75)',
+                    end: 'rgba(200, 50, 50, .75)',
+                    circle: {
+                        outerStart: 'rgba(200, 200, 200, 1)',
+                        outerEnd: 'rgba(200, 200, 200, 1)'
+                    },
+                    shadowUp: true,
+                    shadowDown: false
+                },
+                circle: {
+                    shadow: false,
+                    outerStart: '#34495e',
+                    outerEnd: '#34495e',
+                    middleStart: '#34495e',
+                    middleEnd: '#34495e',
+                    innerStart: '#34495e',
+                    innerEnd: '#34495e'
+                },
+                valueBox: {
+                    rectStart: '#34495e',
+                    rectEnd: '#34495e',
+                    background: '#ffffff',
+                    shadow: '#34495e'
+                }
+            },
+            valueBox: {
+                visible: true
+            },
+            valueText: {
+                visible: true
+            },
+            needle: {
+                type: 'arrow',
+                width: 2,
+                end: 72,
+                circle: {
+                    size: 7,
+                    inner: false,
+                    outer: true
+                }
+            },
+            animation: {
+                delay: 10,
+                duration: 1500,
+                fn: 'linear'
+            },
+            updateValueOnAnimation: true
+    });
+
+    gaugeco2.onready = function() {
+      setInterval( function() {
+        gaugeco2.setValue(co2);
+      }, 1500);
+    };
+
+    gaugeco2.draw();
 
       // var Gauge = new Gauge({ renderTo: 'gaugetemp' });
       // // now handle initial gauge draw with onready event

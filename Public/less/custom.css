@@ -6354,3 +6354,7 @@ ul.notifications {
     float: right;
     opacity: 1;
 }
+
+.indikator {
+    margin-left: 50px;
+}
