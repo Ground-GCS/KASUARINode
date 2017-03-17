@@ -48,6 +48,15 @@ var param = {
   latitude : 0.0,
   longitude : 0.0,
   co2 :0,
+  graph : {
+        ketinggian : [],
+        temperature : [],
+        kelembaban : [],
+        tekanan : [],
+        arahAngin : [],
+        kecAngin : [],
+        co2 : []
+  },
   data : function(){
     var getData = this.nama + "\t" 
                   + moment().format("HH:mm:ss") + "\t"
@@ -65,50 +74,67 @@ var param = {
   logFile : function() {
     if (this.ketinggian >= 50) {
       if ((this.ketinggian % 50 == 0) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       } else if ((this.ketinggian % 50 == 1) && (save == false)){
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       } else if ((this.ketinggian % 50 == 2) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 3) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 4) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 5) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 6) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 7) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 8) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }else if ((this.ketinggian % 50 == 9) && (save == false)) {
+        this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
       }
     }
+  } , 
+  dataAdd : function(){
+        this.graph.ketinggian.push(this.ketinggian);
+        this.graph.temperature.push(this.temperature);
+        this.graph.tekanan.push(this.tekanan);
+        this.graph.arahAngin.push(this.arahAngin);
+        this.graph.kecAngin.push(this.kecAngin);
+        this.graph.co2.push(this.co2);
   }
 };
-
 
 //create MySQL connection 
 // var mysql = require('mysql');
@@ -233,7 +259,7 @@ zeroPort.on('open', function() {
           datahasil = RAWData.split(','); //split the data with ,
 
           //send event in web server
-          if (datahasil[0] == "OK" ) {
+          if (datahasil[0] == "OK" ) { //header
             socket.emit('kirim', {datahasil:datahasil}); 
 
             param.ketinggian  = datahasil[1];
@@ -253,7 +279,7 @@ zeroPort.on('open', function() {
             param.logFile();
             //logger.write(datahasil + '\r\n'); //save log
           }
-
+          console.log(param.graph);
           socket.emit('button', hidup ); //just button to LEDon
           socket.emit('tempDB',  temp); //wtf
           //savedataToFile(datahasil); //baduse
