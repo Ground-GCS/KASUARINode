@@ -8,6 +8,9 @@ var fs = require('fs'); //manage file.
 
 var moment = require('moment-timezone'); //config timezone
 moment().tz("Asia/Bangkok").format();
+
+var waktu = require('moment');
+
 process.env.TZ = 'Asia/Bangkok'; 
 
 require('events').EventEmitter.defaultMaxListeners = Infinity; //socket.io infinity users
@@ -24,6 +27,88 @@ var portNumber = 3030;
 server.listen(portNumber); //start http-server on port
 
 var portName = process.argv[2]; //get port number on command
+
+//variable declare
+var datahasil , 
+  RAWData , 
+  jumlahClient = 0 ,
+  dcClient = 0 ,
+  hidup = false ,
+  temp ,
+  save = false;
+  
+var param = {
+  nama : 'KASUARI',
+  ketinggian : 0 ,
+  temperature : 0, 
+  kelembaban : 0,
+  tekanan : 0,
+  arahAngin : 0,
+  kecAngin : 0,
+  latitude : 0.0,
+  longitude : 0.0,
+  co2 :0,
+  data : function(){
+    var getData = this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+    return getData;
+  } ,
+  logFile : function() {
+    if (this.ketinggian >= 50) {
+      if ((this.ketinggian % 50 == 0) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      } else if ((this.ketinggian % 50 == 1) && (save == false)){
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      } else if ((this.ketinggian % 50 == 2) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 3) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 4) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 5) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 6) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 7) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 8) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }else if ((this.ketinggian % 50 == 9) && (save == false)) {
+        logger.write(this.data() + '\r\n'); //save log
+        console.log("Save data to log.txt on " + this.ketinggian + " meter" );
+        save = true;
+      }
+    }
+  }
+};
+
 
 //create MySQL connection 
 // var mysql = require('mysql');
@@ -59,13 +144,7 @@ app.get('/temp', function(req , res ) {
   });
 });
 
-//variable declare
-var datahasil , 
-  RAWData , 
-  jumlahClient = 0 ,
-  dcClient = 0 ,
-  hidup = false ,
-  temp;
+
 
 // configure Serial Port to connect to Arduino
 var zeroPort = new SerialPort(
@@ -110,6 +189,8 @@ function savedataToFile(data){
 var logger = fs.createWriteStream('log.txt' , {
   flags : 'a'
 });
+logger.write("ID \t Waktu \t Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2" + "\r\n");
+logger.write("[==========================================================================================]" + "\r\n");
 
 zeroPort.on('open', function() {
   console.log('ZeroSystem-IoT Started');
@@ -138,6 +219,8 @@ zeroPort.on('open', function() {
   //   }
   // }, 1200000);
 
+
+
   //io.socket main communication
   io.on('connection' , function(socket){
       jumlahClient++;
@@ -152,6 +235,22 @@ zeroPort.on('open', function() {
           //send event in web server
           if (datahasil[0] == "OK" ) {
             socket.emit('kirim', {datahasil:datahasil}); 
+
+            param.ketinggian  = datahasil[1];
+            param.temperature = datahasil[2]; 
+            param.kelembaban  = datahasil[3];
+            param.tekanan     = datahasil[4];
+            param.arahAngin   = datahasil[5];
+            param.kecAngin    = datahasil[6];
+            param.latitude    = datahasil[7];
+            param.longitude   = datahasil[8];
+            param.co2         = datahasil[9];    
+
+            if (param.ketinggian % 50 > 10){
+              save = false;
+            }
+
+            param.logFile();
             //logger.write(datahasil + '\r\n'); //save log
           }
 

@@ -8,6 +8,19 @@
           TekananRes = [],
           path = [];
 
+      var parameter = {
+        head : '001',
+        Ketinggian : 0 ,
+        Temperature : 0, 
+        Kelembaban : 0,
+        Tekanan : 0,
+        ArahAngin : 0,
+        KecAngin : 0,
+        latitude : 0.0,
+        longitude : 0.0,
+        co2 :0
+      };
+
       function getHumidData(){
           for (var i =0; i < totalPoints; ++i){
             res.push([i,0]);
@@ -81,6 +94,7 @@
           //Deklarasi Variabe
           //ke ID
 
+        
         Header = data.datahasil[0];
         Waktu = parseInt(data.datahasil[1]);
         Ketinggian = parseInt(data.datahasil[2]);
@@ -94,6 +108,8 @@
         Roll = parseInt(data.datahasil[10]);
         Pitch = parseInt(data.datahasil[11]);
         Yaw = parseInt(data.datahasil[12]);
+
+
 
           //Tampil ke id class
         $("#header").html(Header);

@@ -1,0 +1,321 @@
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	14:29:03	50	47	7	173	2	15	-6.91	107.61	176
+KASUARI	14:29:09	100	15	92	110	27	17	-6.91	107.61	1299
+KASUARI	14:29:14	150	37	79	298	20	7	-6.91	107.61	4285
+KASUARI	14:29:19	200	60	12	291	151	14	-6.91	107.61	2463
+KASUARI	14:29:24	250	99	20	115	17	2	-6.91	107.61	2142
+KASUARI	14:29:29	300	6	78	206	107	14	-6.91	107.61	3910
+KASUARI	14:29:34	350	58	85	299	21	14	-6.91	107.61	260
+KASUARI	14:29:39	400	98	77	204	222	26	-6.91	107.61	175
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	14:30:54	100	15	92	110	27	17	-6.91	107.61	1299
+KASUARI	14:30:59	150	37	79	298	20	7	-6.91	107.61	4285
+KASUARI	14:31:05	200	60	12	291	151	14	-6.91	107.61	2463
+KASUARI	14:31:10	250	99	20	115	17	2	-6.91	107.61	2142
+KASUARI	14:31:15	300	6	78	206	107	14	-6.91	107.61	3910
+KASUARI	14:31:20	350	58	85	299	21	14	-6.91	107.61	260
+KASUARI	14:31:25	400	98	77	204	222	26	-6.91	107.61	175
+KASUARI	14:31:30	450	44	16	24	1	1	-6.91	107.61	1985
+KASUARI	14:31:35	500	70	1	287	80	28	-6.91	107.61	955
+KASUARI	14:31:41	550	66	57	299	170	29	-6.91	107.61	298
+KASUARI	14:31:46	600	99	57	45	103	5	-6.91	107.61	1775
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	14:32:15	100	15	92	110	27	17	-6.91	107.61	1299
+KASUARI	14:32:20	150	37	79	298	20	7	-6.91	107.61	4285
+KASUARI	14:32:25	200	60	12	291	151	14	-6.91	107.61	2463
+KASUARI	14:32:30	250	99	20	115	17	2	-6.91	107.61	2142
+KASUARI	14:32:35	300	6	78	206	107	14	-6.91	107.61	3910
+KASUARI	14:32:41	350	58	85	299	21	14	-6.91	107.61	260
+KASUARI	14:32:46	400	98	77	204	222	26	-6.91	107.61	175
+KASUARI	14:32:51	450	44	16	24	1	1	-6.91	107.61	1985
+KASUARI	14:32:56	500	70	1	287	80	28	-6.91	107.61	955
+KASUARI	14:33:01	550	66	57	299	170	29	-6.91	107.61	298
+KASUARI	14:33:06	600	99	57	45	103	5	-6.91	107.61	1775
+KASUARI	14:33:11	650	56	84	117	355	15	-6.91	107.61	912
+KASUARI	14:33:16	700	69	43	168	67	21	-6.91	107.61	3510
+KASUARI	14:33:22	750	59	36	288	74	21	-6.91	107.61	4732
+KASUARI	14:33:27	800	32	45	191	224	19	-6.91	107.61	4641
+KASUARI	14:33:32	850	9	1	289	206	10	-6.91	107.61	1449
+KASUARI	14:33:37	900	21	85	269	136	10	-6.91	107.61	4078
+KASUARI	14:33:42	950	59	99	295	130	11	-6.91	107.61	2133
+KASUARI	14:33:47	1000	25	57	115	18	24	-6.91	107.61	2902
+KASUARI	14:33:52	1050	42	35	181	111	25	-6.91	107.61	2200
+KASUARI	14:33:58	1100	75	83	271	279	15	-6.91	107.61	2991
+KASUARI	14:34:03	1150	13	9	81	80	5	-6.91	107.61	4675
+KASUARI	14:34:08	1200	14	0	115	227	14	-6.91	107.61	2044
+KASUARI	14:34:13	1250	69	19	139	223	17	-6.91	107.61	3588
+KASUARI	14:34:18	1300	20	35	254	146	3	-6.91	107.61	1572
+KASUARI	14:34:23	1350	81	93	273	222	8	-6.91	107.61	568
+KASUARI	14:34:28	1400	16	85	61	344	14	-6.91	107.61	2821
+KASUARI	14:34:33	1450	91	85	192	125	1	-6.91	107.61	3286
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+undefined	15:57:01	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined	undefined
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+function (){
+    return this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+  }
+function (){
+    return this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+  }
+function (){
+    return this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+  }
+function (){
+    return this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+  }
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+function (){
+    var getData = this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+    return getData;
+  }
+function (){
+    var getData = this.nama + "\t" 
+                  + moment().format("HH:mm:ss") + "\t"
+                  + this.ketinggian + "\t" 
+                  + this.temperature + "\t" 
+                  + this.kelembaban + "\t" 
+                  + this.tekanan + "\t" 
+                  + this.arahAngin + "\t" 
+                  + this.kecAngin + "\t" 
+                  + this.latitude + "\t"
+                  + this.longitude + "\t"
+                  + this.co2 ;
+    return getData;
+  }
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	16:04:49	150	37	79	298	20	7	-6.91	107.61	4285
+KASUARI	16:04:54	200	60	12	291	151	14	-6.91	107.61	2463
+KASUARI	16:04:59	250	99	20	115	17	2	-6.91	107.61	2142
+KASUARI	16:05:04	300	6	78	206	107	14	-6.91	107.61	3910
+KASUARI	16:05:09	350	58	85	299	21	14	-6.91	107.61	260
+KASUARI	16:05:14	400	98	77	204	222	26	-6.91	107.61	175
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	16:08:37	300	74	49	213	320	5	-6.91	107.61	2012
+KASUARI	16:08:38	351	98	1	111	176	11	-6.91	107.61	3671
+KASUARI	16:08:39	402	67	89	218	94	15	-6.91	107.61	2918
+KASUARI	16:08:40	453	45	76	261	25	29	-6.91	107.61	1631
+KASUARI	16:08:41	500	93	27	32	4	1	-6.91	107.61	2198
+KASUARI	16:08:42	550	90	52	48	214	4	-6.91	107.61	4918
+KASUARI	16:08:44	602	55	85	34	195	1	-6.91	107.61	1151
+KASUARI	16:08:45	652	56	61	187	113	29	-6.91	107.61	788
+KASUARI	16:08:46	704	44	75	70	136	9	-6.91	107.61	2080
+KASUARI	16:08:47	755	93	64	278	156	21	-6.91	107.61	3341
+KASUARI	16:08:48	801	92	63	283	312	1	-6.91	107.61	4009
+KASUARI	16:08:49	850	29	88	248	98	27	-6.91	107.61	2723
+KASUARI	16:08:50	907	31	35	68	228	20	-6.91	107.61	234
+KASUARI	16:08:52	955	54	21	86	256	20	-6.91	107.61	4662
+KASUARI	16:08:53	1001	19	66	199	240	25	-6.91	107.61	2577
+KASUARI	16:08:54	1053	84	69	42	263	25	-6.91	107.61	4329
+KASUARI	16:08:55	1104	54	20	297	47	21	-6.91	107.61	4462
+KASUARI	16:08:56	1152	30	43	167	208	14	-6.91	107.61	2317
+KASUARI	16:08:57	1200	8	6	278	26	17	-6.91	107.61	4114
+KASUARI	16:08:59	1252	17	30	290	286	6	-6.91	107.61	2012
+KASUARI	16:09:00	1305	77	95	95	104	0	-6.91	107.61	118
+KASUARI	16:09:01	1358	97	97	109	123	12	-6.91	107.61	4085
+KASUARI	16:09:02	1404	96	29	1	216	0	-6.91	107.61	581
+KASUARI	16:09:03	1452	37	96	155	344	6	-6.91	107.61	408
+KASUARI	16:09:04	1503	81	43	172	115	28	-6.91	107.61	1975
+KASUARI	16:09:05	1553	63	0	99	7	1	-6.91	107.61	4488
+KASUARI	16:09:06	1604	58	74	23	261	22	-6.91	107.61	3924
+KASUARI	16:09:08	1651	62	74	98	21	17	-6.91	107.61	4415
+KASUARI	16:09:09	1702	11	13	96	10	14	-6.91	107.61	1123
+KASUARI	16:09:10	1753	15	8	21	288	15	-6.91	107.61	1852
+KASUARI	16:09:11	1802	49	30	9	107	12	-6.91	107.61	974
+KASUARI	16:09:12	1850	74	64	207	282	24	-6.91	107.61	4869
+KASUARI	16:09:13	1901	67	57	22	6	21	-6.91	107.61	1703
+KASUARI	16:09:14	1954	13	7	254	158	29	-6.91	107.61	2415
+KASUARI	16:09:15	2000	25	64	154	248	13	-6.91	107.61	3623
+KASUARI	16:09:17	2053	63	83	110	284	13	-6.91	107.61	3787
+KASUARI	16:09:18	2104	30	7	256	5	3	-6.91	107.61	4666
+KASUARI	16:09:19	2152	76	96	178	96	6	-6.91	107.61	662
+KASUARI	16:09:20	2203	19	81	215	203	18	-6.91	107.61	1452
+KASUARI	16:09:21	2251	37	98	32	17	6	-6.91	107.61	3586
+KASUARI	16:09:23	2304	94	63	127	67	28	-6.91	107.61	2931
+KASUARI	16:09:24	2351	63	96	227	245	3	-6.91	107.61	219
+KASUARI	16:09:25	2400	93	52	144	275	16	-6.91	107.61	2623
+KASUARI	16:09:27	2454	67	21	183	151	23	-6.91	107.61	3043
+KASUARI	16:09:28	2505	5	63	192	298	19	-6.91	107.61	3933
+KASUARI	16:09:29	2554	9	89	145	85	26	-6.91	107.61	2151
+KASUARI	16:09:30	2600	77	57	294	56	15	-6.91	107.61	3471
+KASUARI	16:09:31	2657	60	79	24	157	26	-6.91	107.61	1601
+KASUARI	16:09:32	2701	59	22	163	63	10	-6.91	107.61	728
+KASUARI	16:09:34	2750	23	97	262	272	14	-6.91	107.61	4238
+KASUARI	16:09:35	2805	15	73	114	351	24	-6.91	107.61	3612
+KASUARI	16:09:36	2853	34	82	253	288	11	-6.91	107.61	1904
+KASUARI	16:09:37	2901	25	53	91	68	5	-6.91	107.61	1420
+KASUARI	16:09:38	2957	90	50	167	316	21	-6.91	107.61	1944
+KASUARI	16:09:40	3002	61	22	251	261	12	-6.91	107.61	162
+KASUARI	16:09:40	3053	11	51	46	28	12	-6.91	107.61	1126
+KASUARI	16:09:42	3101	0	4	112	27	9	-6.91	107.61	1777
+KASUARI	16:09:43	3154	95	57	199	337	26	-6.91	107.61	230
+KASUARI	16:09:44	3206	69	59	161	235	4	-6.91	107.61	3019
+KASUARI	16:09:45	3254	71	79	70	199	21	-6.91	107.61	2592
+KASUARI	16:09:46	3300	45	20	280	254	13	-6.91	107.61	678
+KASUARI	16:09:47	3358	48	82	243	54	27	-6.91	107.61	226
+KASUARI	16:09:48	3404	53	61	197	182	6	-6.91	107.61	4628
+KASUARI	16:09:49	3457	44	48	294	68	13	-6.91	107.61	1933
+KASUARI	16:09:50	3506	51	62	192	304	9	-6.91	107.61	258
+KASUARI	16:09:51	3553	10	20	130	316	3	-6.91	107.61	2546
+KASUARI	16:09:52	3601	13	13	232	246	4	-6.91	107.61	3354
+KASUARI	16:09:53	3651	91	16	197	213	0	-6.91	107.61	788
+KASUARI	16:09:55	3702	29	89	284	305	0	-6.91	107.61	1077
+KASUARI	16:09:56	3756	81	79	70	250	10	-6.91	107.61	1907
+KASUARI	16:09:57	3800	60	53	239	87	5	-6.91	107.61	140
+KASUARI	16:09:59	3854	12	28	129	332	23	-6.91	107.61	1771
+KASUARI	16:09:59	3904	39	8	183	311	14	-6.91	107.61	2554
+KASUARI	16:10:00	3952	40	13	32	171	10	-6.91	107.61	4390
+KASUARI	16:10:02	4001	68	4	169	263	13	-6.91	107.61	4549
+KASUARI	16:10:02	4053	22	7	281	289	19	-6.91	107.61	1157
+KASUARI	16:10:04	4100	63	50	40	343	7	-6.91	107.61	648
+KASUARI	16:10:05	4152	85	2	221	278	25	-6.91	107.61	1619
+KASUARI	16:10:06	4200	56	44	88	88	24	-6.91	107.61	1137
+KASUARI	16:10:07	4250	83	88	212	186	1	-6.91	107.61	4260
+KASUARI	16:10:09	4306	63	93	2	124	19	-6.91	107.61	147
+KASUARI	16:10:09	4350	2	17	254	314	3	-6.91	107.61	2044
+KASUARI	16:10:11	4405	18	44	220	275	13	-6.91	107.61	2295
+KASUARI	16:10:11	4451	44	18	273	290	1	-6.91	107.61	3203
+KASUARI	16:10:13	4508	16	48	139	71	15	-6.91	107.61	1854
+KASUARI	16:10:14	4551	45	98	90	325	29	-6.91	107.61	359
+KASUARI	16:10:15	4604	36	33	227	262	3	-6.91	107.61	1848
+KASUARI	16:10:16	4650	51	84	9	115	29	-6.91	107.61	4655
+KASUARI	16:10:17	4704	47	16	199	164	4	-6.91	107.61	3889
+KASUARI	16:10:18	4751	13	18	30	143	15	-6.91	107.61	4048
+KASUARI	16:10:19	4805	16	16	216	76	29	-6.91	107.61	396
+KASUARI	16:10:20	4856	59	31	206	235	12	-6.91	107.61	2768
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2
+[==========================================================================================]
+KASUARI	16:11:09	50	1	53	208	64	28	-6.91	107.61	1490
+KASUARI	16:11:10	103	75	35	98	142	19	-6.91	107.61	2968
+KASUARI	16:11:12	155	61	25	235	308	5	-6.91	107.61	2776
+KASUARI	16:11:13	200	78	99	9	49	3	-6.91	107.61	483
+KASUARI	16:11:14	252	29	15	263	222	7	-6.91	107.61	1643
+KASUARI	16:11:15	300	74	49	213	320	5	-6.91	107.61	2012
+KASUARI	16:11:16	351	98	1	111	176	11	-6.91	107.61	3671
+KASUARI	16:11:17	402	67	89	218	94	15	-6.91	107.61	2918
+KASUARI	16:11:18	453	45	76	261	25	29	-6.91	107.61	1631
+KASUARI	16:11:19	500	93	27	32	4	1	-6.91	107.61	2198
+KASUARI	16:11:20	550	90	52	48	214	4	-6.91	107.61	4918
+KASUARI	16:11:21	602	55	85	34	195	1	-6.91	107.61	1151
+KASUARI	16:11:23	652	56	61	187	113	29	-6.91	107.61	788
+KASUARI	16:11:24	704	44	75	70	136	9	-6.91	107.61	2080
+KASUARI	16:11:25	755	93	64	278	156	21	-6.91	107.61	3341
+KASUARI	16:11:26	801	92	63	283	312	1	-6.91	107.61	4009
+KASUARI	16:11:27	850	29	88	248	98	27	-6.91	107.61	2723
+KASUARI	16:11:28	907	31	35	68	228	20	-6.91	107.61	234
+KASUARI	16:11:29	955	54	21	86	256	20	-6.91	107.61	4662
+KASUARI	16:11:30	1001	19	66	199	240	25	-6.91	107.61	2577
+KASUARI	16:11:32	1053	84	69	42	263	25	-6.91	107.61	4329
+KASUARI	16:11:33	1104	54	20	297	47	21	-6.91	107.61	4462
+KASUARI	16:11:34	1152	30	43	167	208	14	-6.91	107.61	2317
+KASUARI	16:11:35	1200	8	6	278	26	17	-6.91	107.61	4114
+KASUARI	16:11:36	1252	17	30	290	286	6	-6.91	107.61	2012
+KASUARI	16:11:38	1305	77	95	95	104	0	-6.91	107.61	118
+KASUARI	16:11:39	1358	97	97	109	123	12	-6.91	107.61	4085
+KASUARI	16:11:40	1404	96	29	1	216	0	-6.91	107.61	581
+KASUARI	16:11:41	1452	37	96	155	344	6	-6.91	107.61	408
+KASUARI	16:11:42	1503	81	43	172	115	28	-6.91	107.61	1975
+KASUARI	16:11:43	1553	63	0	99	7	1	-6.91	107.61	4488
+KASUARI	16:11:44	1604	58	74	23	261	22	-6.91	107.61	3924
+KASUARI	16:11:45	1651	62	74	98	21	17	-6.91	107.61	4415
+KASUARI	16:11:46	1702	11	13	96	10	14	-6.91	107.61	1123
+KASUARI	16:11:48	1753	15	8	21	288	15	-6.91	107.61	1852
+KASUARI	16:11:49	1802	49	30	9	107	12	-6.91	107.61	974
+KASUARI	16:11:50	1850	74	64	207	282	24	-6.91	107.61	4869
+KASUARI	16:11:51	1901	67	57	22	6	21	-6.91	107.61	1703
+KASUARI	16:11:52	1954	13	7	254	158	29	-6.91	107.61	2415
+KASUARI	16:11:53	2000	25	64	154	248	13	-6.91	107.61	3623
+KASUARI	16:11:55	2053	63	83	110	284	13	-6.91	107.61	3787
+KASUARI	16:11:56	2104	30	7	256	5	3	-6.91	107.61	4666
+KASUARI	16:11:57	2152	76	96	178	96	6	-6.91	107.61	662
+KASUARI	16:11:58	2203	19	81	215	203	18	-6.91	107.61	1452
+KASUARI	16:11:59	2251	37	98	32	17	6	-6.91	107.61	3586
+KASUARI	16:12:00	2304	94	63	127	67	28	-6.91	107.61	2931
+KASUARI	16:12:02	2351	63	96	227	245	3	-6.91	107.61	219
+KASUARI	16:12:03	2400	93	52	144	275	16	-6.91	107.61	2623
+KASUARI	16:12:04	2454	67	21	183	151	23	-6.91	107.61	3043
+KASUARI	16:12:05	2505	5	63	192	298	19	-6.91	107.61	3933
+KASUARI	16:12:06	2554	9	89	145	85	26	-6.91	107.61	2151
+KASUARI	16:12:08	2600	77	57	294	56	15	-6.91	107.61	3471
+KASUARI	16:12:09	2657	60	79	24	157	26	-6.91	107.61	1601
+KASUARI	16:12:10	2701	59	22	163	63	10	-6.91	107.61	728
+KASUARI	16:12:11	2750	23	97	262	272	14	-6.91	107.61	4238
+KASUARI	16:12:13	2805	15	73	114	351	24	-6.91	107.61	3612
+KASUARI	16:12:14	2853	34	82	253	288	11	-6.91	107.61	1904
+KASUARI	16:12:15	2901	25	53	91	68	5	-6.91	107.61	1420
+KASUARI	16:12:16	2957	90	50	167	316	21	-6.91	107.61	1944
+KASUARI	16:12:17	3002	61	22	251	261	12	-6.91	107.61	162
+KASUARI	16:12:18	3053	11	51	46	28	12	-6.91	107.61	1126
+KASUARI	16:12:20	3101	0	4	112	27	9	-6.91	107.61	1777
+KASUARI	16:12:21	3154	95	57	199	337	26	-6.91	107.61	230
+KASUARI	16:12:22	3206	69	59	161	235	4	-6.91	107.61	3019
+KASUARI	16:12:23	3254	71	79	70	199	21	-6.91	107.61	2592
