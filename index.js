@@ -218,8 +218,8 @@ function savedataToFile(data){
 var logger = fs.createWriteStream('log.txt' , {
   flags : 'a'
 });
-logger.write("ID \t Waktu \t Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang  Bujur  CO2" + "\r\n");
-logger.write("[=============================================================================================]" + "\r\n");
+logger.write("ID \t Waktu \t Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang \t Bujur     \t CO2" + "\r\n");
+logger.write("[==========================================================================================================]" + "\r\n");
 
 zeroPort.on('open', function() {
   console.log('ZeroSystem-IoT Started');
