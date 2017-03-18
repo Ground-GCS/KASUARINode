@@ -118,6 +118,9 @@ $(document).ready(function() {
         title: {
             text: ''
         },
+        credits: {
+            enabled: false
+        },
         xAxis: {
             type: 'datetime',
             tickPixelInterval: 150,
@@ -175,6 +178,9 @@ $(document).ready(function() {
         },
         title: {
             text: ''
+        },
+         credits: {
+            enabled: false
         },
         xAxis: {
             type: 'datetime',
@@ -236,6 +242,9 @@ $(document).ready(function() {
         title: {
             text: ''
         },
+         credits: {
+            enabled: false
+        },
         xAxis: {
             type: 'datetime',
             tickPixelInterval: 150,
@@ -293,6 +302,9 @@ $(document).ready(function() {
         },
         title: {
             text: ''
+        },
+         credits: {
+            enabled: false
         },
         xAxis: {
             type: 'datetime',
@@ -352,6 +364,9 @@ $(document).ready(function() {
         title: {
             text: ''
         },
+         credits: {
+            enabled: false
+        },
         xAxis: {
             type: 'datetime',
             tickPixelInterval: 150,
@@ -410,6 +425,9 @@ $(document).ready(function() {
         },
         title: {
             text: ''
+        },
+         credits: {
+            enabled: false
         },
         xAxis: {
             type: 'datetime',
