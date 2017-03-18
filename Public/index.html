@@ -36,7 +36,7 @@
   <body class="nav-md" onload="update()" ng-app="appSampleMod" ng-controller="appSampleCtrl">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>APTRG v1 </span></a>
@@ -61,11 +61,10 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="index.html">Dashboard</a>
-                    <li><a href="graph.html">Grafik terhadap waktu</a>
-                    <li><a href="gauge.html">Indikator Parameter</a>
-                    <li><a href="gallery.html">Foto Udara</a>
-                  </li>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="graph.html">Grafik terhadap waktu</a></li>
+                    <li><a href="gauge.html">Indikator Parameter</a></li>
+                    <li><a href="gallery.html">Foto Udara</a></li>
                 </ul>
               </li>
             </ul>
@@ -73,20 +72,7 @@
         </div>
         <!-- /sidebar menu -->
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-          <a data-toggle="tooltip" data-placement="top" title="Settings">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="Lock">
-            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="Logout">
-            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-          </a>
-        </div>
+        
         <!-- /menu footer buttons -->
       </div>
     </div>
@@ -198,110 +184,11 @@
           </div>
         </div>
       </div>
-      <!-- /top tiles -->
-      <div class="row x_title">
-        <div class="col-md-6">
-          <h3>Real Time Data - <small> Gauge</small></h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-4 ">
-          <div class="x_content indikator">
-            <canvas id="gaugetinggi" width="100" height="100"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 ">
-          <div class="x_content indikator">
-            <canvas id="gaugetemp" width="50" height="50"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 ">
-          <div class="x_content indikator">
-            <canvas id="gaugekel" width="50" height="50"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="x_content indikator">
-            <canvas id="gaugetek" width="50" height="50"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="x_content indikator">
-            <canvas id="gaugearah" width="50" height="50"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 ">
-          <div class="x_content indikator">
-            <canvas id="gaugekec" width="50" height="50"></canvas>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 ">
-          <div class="x_content indikator">
-            <canvas id="gaugeco2" width="50" height="50"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="dashboard_graph">
-            <div class="row x_title">
-              <div class="col-sm-12 col-md-12 col-xs-12">
-                <h2>Real Time Graph - <small>Grafik Parameter berdasarkan waktu</small></h2>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="x_panel">
-              <ul class="nav navbar-right panel_toolbox" style="padding-left: 30px">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-          </ul>
-          <div class="x_content">
-            <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div id="graph" class="demo-placeholder" style="height:300px;"></div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
-
-   <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="dashboard_graph">
-            <div class="row x_title">
-              <div class="col-sm-12 col-md-12 col-xs-12">
-                <h2>Real Time Graph - <small>Grafik Parameter berdasarkan waktu</small></h2>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="x_panel">
-              <ul class="nav navbar-right panel_toolbox" style="padding-left: 30px">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-          </ul>
-          <div class="x_content">
-            <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div id="zeroGraph" class="demo-placeholder" style="height:300px;"></div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
+    
+    
   <br />
+  <!-- content -->
+  
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel tile" style="height: 380px">
@@ -320,65 +207,61 @@
       <div id="map" class="col-md-12 col-sm-12 col-xs-12" style="height:300px;"></div>
     </div>
   </div>
-</div>
-<div class="col-md-6 col-sm-6 col-xs-12">
-  <div class="x_panel tile overflow_hidden" style="height: 380px">
-    <div class="x_title">
-      <h2>Sikap Wahana</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+
+  </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="x_panel tile overflow_hidden" style="height: 380px">
+        <div class="x_title">
+          <h2>Sikap Wahana</h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings 1</a>
+            </li>
+            <li><a href="#">Settings 2</a>
+          </li>
+        </ul>
       </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Settings 1</a>
-        </li>
-        <li><a href="#">Settings 2</a>
-      </li>
+      <li><a class="close-link"><i class="fa fa-close"></i></a>
+    </li>
     </ul>
-  </li>
-  <li><a class="close-link"><i class="fa fa-close"></i></a>
-</li>
-</ul>
-<div class="clearfix"></div>
-</div>
-<div class="x_content">
-<div id="sikap" style=" margin-left: 250px; margin-top: 180px; margin-bottom: 180px; margin-right: 250px;" align="center"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Gauge -->
-<div class="row"></div>
-<div class="row">
-<div class="col-md-9 col-sm-9 col-xs-12">
-<div class="row">
-</div>
-<div class="row">
-</div>
-</div>
-</div>
-<!-- footer content -->
-<footer>
-<div class="pull-right">
-Copyright Satrya Budi Pratama made with ♥ <a href="https:github.com/noczero">| Zero-Inside</a>
-</div>
-<div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-</div>
-<!-- /page content -->
-</div>
-</div>
-<div id="custom_notifications" class="custom-notifications dsp_none">
-<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-</ul>
-<div class="clearfix"></div>
-<div id="notif-group" class="tabbed_notifications"></div>
-</div>
+    <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+    <div id="sikap" style=" margin-left: 250px; margin-top: 180px; margin-bottom: 180px; margin-right: 250px;" align="center"></div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- end content -->
+
+        <footer>
+          <div class="letak_tengah" id="localtime">
+            
+          </div>
+          <div class="letak_tengah">
+          Crafted with <i class="fa fa-heart" style="color : #FF8A80;"></i> <a href="https://aptrg.lab.telkomuniversity.ac.id/" style="color : white; font-weight: bold;"> APTRG </a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
 
 <!-- /footer content -->
 </body>
+
+<script> 
+    function clock() {
+    document.getElementById("localtime").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
+    }
+    setInterval(clock, 1000);
+</script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/nprogress.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>

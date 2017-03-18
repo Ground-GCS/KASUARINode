@@ -677,7 +677,7 @@ li.current-page a {
 }
 .x_content canvas {}
 footer {
-  background: #fff;
+  background: #009688;
   padding: 15px 20px;
   margin: 0 -10px;
 }
@@ -5385,8 +5385,14 @@ ul.notifications {
 }
 
 /*pace loader*/
-
-
+.nav-sm .container.body .col-md-3.left_col.menu_fixed {
+  position: fixed;
+  height: 100%;
+}
+.nav-md .container.body .col-md-3.left_col.menu_fixed {
+  height: 100%;
+  position: fixed;
+}
 /*http://github.hubspot.com/pace/docs/welcome/*/
 
 .pace {
@@ -5409,6 +5415,17 @@ ul.notifications {
   height: 2px;
 }
 .indikator {
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
+
+.geserkiri {
+  margin-right: 30px;
+}
+
+.letak_tengah {
+  margin: 0 auto;
+  text-align: center;
+  color: #FAFAFA;
+}
+

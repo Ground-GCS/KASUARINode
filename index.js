@@ -283,6 +283,16 @@ zeroPort.on('open', function() {
               param.kecAngin,
               param.co2]
             });
+
+            socket.emit('dataGauge', {  
+              data : [ param.ketinggian,
+              param.temperature,
+              param.kelembaban,
+              param.tekanan,
+              param.arahAngin,
+              param.kecAngin,
+              param.co2]
+            });
  
 
             if (param.ketinggian % 50 > 10){

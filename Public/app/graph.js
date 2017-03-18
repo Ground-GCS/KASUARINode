@@ -1,4 +1,4 @@
-var chart;
+var chartTemp , chartKelem, chartTekan , chartArah , chartKece , chartCo2;
 var param1 = {
         ketinggian : 0 ,
         temperature : 0, 
@@ -62,6 +62,9 @@ var param1 = {
 
 
 var ketinggian ,temperature, kelembaban , tekanan , arahAngin , kecAngin , co2;
+
+
+function graphUpdate() {
 var socket1 = io.connect();
 
     socket1.on('dataGraph' , function(data){
@@ -82,6 +85,8 @@ var socket1 = io.connect();
         co2 = parseInt(data.data[6]);
     });
 
+}
+
 $(document).ready(function() { 
  
 
@@ -91,67 +96,27 @@ $(document).ready(function() {
             }
         });
 
-    chart = new Highcharts.Chart({
+    chartTemp = new Highcharts.Chart({
         chart: {
-            renderTo: 'zeroGraph',
+            renderTo: 'chartTemp',
             defaultSeriesType: 'spline',
             events: {
                 load: function () {
 
-                        // set up the updating of the chart each second
                         var series = this.series[0] ,
-                            shift = series.data.length > 50;
+                        shift = series.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                //y = temperature;
                                 y = param1.getTemperature();
                             series.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series1 = this.series[1] ,
-                        shift = series1.data.length > 50;
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = param1.getKelembaban();
-                            series1.addPoint([x, y], true, true);
-                        }, 1000);
-
-                        var series2 = this.series[2],
-                        shift = series2.data.length > 50;
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = param1.getTekanan();
-                            series2.addPoint([x, y], true, true);
-                        }, 1000);
-
-                        var series3 = this.series[3],
-                        shift = series3.data.length > 50;
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = param1.getArahAngin();
-                            series3.addPoint([x, y], true, true);
-                        }, 1000);
-
-                        var series4 = this.series[4],
-                        shift = series4.data.length > 50;
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = param1.getKecAngin();
-                            series4.addPoint([x, y], true, true);
-                        }, 1000);
-
-                        // var series5 = this.series[5],
-                        // shift = series5.data.length > 50;
-                        // setInterval(function () {
-                        //     var x = (new Date()).getTime(), // current time
-                        //         y = param1.getCo2();
-                        //     series5.addPoint([x, y], true, true);
-                        // }, 1000);
+                      
                     }
             }
         },
         title: {
-            text: 'Parameter Atmosfir terhadap Waktu'
+            text: ''
         },
         xAxis: {
             type: 'datetime',
@@ -164,11 +129,12 @@ $(document).ready(function() {
             maxPadding: 0.2,
             crosshair : true,
             title: {
-                text: 'Value',
+                text: 'Celcius',
                 margin: 5
             }
         },
-        series: [{
+        series: [
+        {
             name: 'Temperature',
             data: (function () {
                     var data = [],
@@ -178,15 +144,57 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y : param1.getTemperature()
+                            y: param1.getTemperature()
                         });
                     }
                     return data;
                 }())
         }
-        ,
+        ]
+    });
+
+
+    chartKelem = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chartKelem',
+            defaultSeriesType: 'spline',
+            events: {
+                load: function () {
+
+                        var series = this.series[0] ,
+                        shift = series.data.length > 50;
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = param1.getKelembaban();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+
+                      
+                    }
+            }
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150,
+            crosshair : true,
+            maxZoom: 20 * 1000
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            crosshair : true,
+            title: {
+                text: 'Percent',
+                margin: 5
+            }
+        },
+        series: [
         {
             name: 'Kelembaban',
+            color : '#F44336',
             data: (function () {
                     var data = [],
                         time = (new Date()).getTime(),
@@ -200,9 +208,53 @@ $(document).ready(function() {
                     }
                     return data;
                 }())
+        }
+        ]
+    });
+
+
+
+    chartTekan = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chartTekan',
+            defaultSeriesType: 'spline',
+            events: {
+                load: function () {
+
+                        var series = this.series[0] ,
+                        shift = series.data.length > 50;
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = param1.getTekanan();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+
+                      
+                    }
+            }
         },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150,
+            crosshair : true,
+            maxZoom: 20 * 1000
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            crosshair : true,
+            title: {
+                text: 'Mbar',
+                margin: 5
+            }
+        },
+        series: [
         {
             name: 'Tekanan',
+            color : '#CDDC39',
             data: (function () {
                     var data = [],
                         time = (new Date()).getTime(),
@@ -216,9 +268,51 @@ $(document).ready(function() {
                     }
                     return data;
                 }())
+        }
+        ]
+    });
+
+    chartArah = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chartArah',
+            defaultSeriesType: 'spline',
+            events: {
+                load: function () {
+
+                        var series = this.series[0] ,
+                        shift = series.data.length > 50;
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = param1.getArahAngin();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+
+                      
+                    }
+            }
         },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150,
+            crosshair : true,
+            maxZoom: 20 * 1000
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            crosshair : true,
+            title: {
+                text: 'Derajat',
+                margin: 5
+            }
+        },
+        series: [
         {
             name: 'Arah Angin',
+            color : '#8BC34A',
             data: (function () {
                     var data = [],
                         time = (new Date()).getTime(),
@@ -232,9 +326,51 @@ $(document).ready(function() {
                     }
                     return data;
                 }())
+        }
+        ]
+    });
+
+    chartKece = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chartKece',
+            defaultSeriesType: 'spline',
+            events: {
+                load: function () {
+
+                        var series = this.series[0] ,
+                        shift = series.data.length > 50;
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = param1.getKecAngin();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+
+                      
+                    }
+            }
         },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150,
+            crosshair : true,
+            maxZoom: 20 * 1000
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            crosshair : true,
+            title: {
+                text: 'm/s',
+                margin: 5
+            }
+        },
+        series: [
         {
             name: 'Kecepatan Angin',
+            color : '#795548',
             data: (function () {
                     var data = [],
                         time = (new Date()).getTime(),
@@ -249,23 +385,69 @@ $(document).ready(function() {
                     return data;
                 }())
         }
-        // {
-        //     name: 'Carbon Dioxide',
-        //     data: (function () {
-        //             var data = [],
-        //                 time = (new Date()).getTime(),
-        //                 i;
-
-        //             for (i = -19; i <= 0; i += 1) {
-        //                 data.push({
-        //                     x: time + i * 1000,
-        //                     y: param1.getCo2()
-        //                 });
-        //             }
-        //             return data;
-        //         }())
-        // }
         ]
     });
 
+
+    chartCo2 = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chartCo2',
+            defaultSeriesType: 'spline',
+            events: {
+                load: function () {
+
+                        var series = this.series[0] ,
+                        shift = series.data.length > 50;
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = param1.getCo2();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+
+                      
+                    }
+            }
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150,
+            crosshair : true,
+            maxZoom: 20 * 1000
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            crosshair : true,
+            title: {
+                text: 'ppm',
+                margin: 5
+            }
+        },
+        series: [
+        {
+            name: 'Carbon Dioxide',
+            color : '#673AB7',
+            data: (function () {
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: param1.getCo2()
+                        });
+                    }
+                    return data;
+                }())
+        }
+        ]
+    });
+
+
 });
+
+
