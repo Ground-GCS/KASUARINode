@@ -72,7 +72,7 @@ var param = {
     return getData;
   } ,
   logFile : function() {
-    if (this.ketinggian >= 50) {
+    if (this.ketinggian >= 50 && this.ketinggian < 9500) {
       if ((this.ketinggian % 50 == 0) && (save == false)) {
         this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log

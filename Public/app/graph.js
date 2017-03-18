@@ -1,7 +1,5 @@
 var chart;
-$(document).ready(function() { 
-
-    var param = {
+var param1 = {
         ketinggian : 0 ,
         temperature : 0, 
         kelembaban : 0,
@@ -19,25 +17,25 @@ $(document).ready(function() {
                 co2 : []
           },
         setKetinggian : function(data){
-            this.ketinggian = data;
+            this.ketinggian = parseInt(data);
         },
         setTemperature : function(data){
-            this.temperature = data;
+            this.temperature = parseInt(data);
         },
         setKelembaban : function(data){
-            this.kelembaban = data;
+            this.kelembaban = parseInt(data);
         },
         setTekanan : function(data){
-            this.tekanan = data;
+            this.tekanan = parseInt(data);
         },
         setArahAngin : function(data){
-            this.arahAngin = data;
+            this.arahAngin = parseInt(data);
         },
         setKecAngin : function(data){
-            this.kecAngin = data;
+            this.kecAngin = parseInt(data);
         },
         setCo2 : function(data){
-            this.co2 = data;
+            this.co2 = parseInt(data);
         },
         getKetinggian : function(){
            return this.ketinggian;
@@ -63,18 +61,29 @@ $(document).ready(function() {
     };
 
 
-    var socket = io.connect();
+var ketinggian ,temperature, kelembaban , tekanan , arahAngin , kecAngin , co2;
+var socket1 = io.connect();
 
-    socket.on('dataGraph' , function(data){
+    socket1.on('dataGraph' , function(data){
         //console.log(data.data[0]); //getfirstelement
-        param.setKetinggian(data.data[0]);
-        param.setKelembaban(data.data[1]);
-        param.setKelembaban(data.data[2]);
-        param.setTekanan(data.data[3]);
-        param.setArahAngin(data.data[4]);
-        param.setKecAngin(data.data[5]);
-        param.setCo2(data.data[6]);
+        param1.setKetinggian(data.data[0]);
+        param1.setTemperature(data.data[1]);
+        param1.setKelembaban(data.data[2]);
+        param1.setTekanan(data.data[3]);
+        param1.setArahAngin(data.data[4]);
+        param1.setKecAngin(data.data[5]);
+        param1.setCo2(data.data[6]);
+        ketinggian = parseInt(data.data[0]);
+        temperature = parseInt(data.data[1]);
+        kelembaban = parseInt(data.data[2]);
+        tekanan = parseInt(data.data[3]);
+        arahAngin = parseInt(data.data[4]);
+        kecAngin = parseInt(data.data[5]);
+        co2 = parseInt(data.data[6]);
     });
+
+$(document).ready(function() { 
+ 
 
     Highcharts.setOptions({
             global: {
@@ -90,52 +99,59 @@ $(document).ready(function() {
                 load: function () {
 
                         // set up the updating of the chart each second
-                        var series = this.series[0];
+                        var series = this.series[0] ,
+                            shift = series.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = param.temperature;
+                                //y = temperature;
+                                y = param1.getTemperature();
                             series.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series1 = this.series[1];
+                        var series1 = this.series[1] ,
+                        shift = series1.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = param.kelembaban;
+                                y = param1.getKelembaban();
                             series1.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series2 = this.series[2];
+                        var series2 = this.series[2],
+                        shift = series2.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = param.tekanan;
+                                y = param1.getTekanan();
                             series2.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series3 = this.series[3];
+                        var series3 = this.series[3],
+                        shift = series3.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = param.arahAngin;
+                                y = param1.getArahAngin();
                             series3.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series4 = this.series[4];
+                        var series4 = this.series[4],
+                        shift = series4.data.length > 50;
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = param.kecAngin;
+                                y = param1.getKecAngin();
                             series4.addPoint([x, y], true, true);
                         }, 1000);
 
-                        var series5 = this.series[5];
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = param.co2;
-                            series5.addPoint([x, y], true, true);
-                        }, 1000);
+                        // var series5 = this.series[5],
+                        // shift = series5.data.length > 50;
+                        // setInterval(function () {
+                        //     var x = (new Date()).getTime(), // current time
+                        //         y = param1.getCo2();
+                        //     series5.addPoint([x, y], true, true);
+                        // }, 1000);
                     }
             }
         },
         title: {
-            text: 'DHT11 Sensor'
+            text: 'Parameter Atmosfir terhadap Waktu'
         },
         xAxis: {
             type: 'datetime',
@@ -162,12 +178,13 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: param.temperature
+                            y : param1.getTemperature()
                         });
                     }
                     return data;
                 }())
-        },
+        }
+        ,
         {
             name: 'Kelembaban',
             data: (function () {
@@ -178,7 +195,7 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: param.kelembaban
+                            y: param1.getKelembaban()
                         });
                     }
                     return data;
@@ -194,7 +211,7 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: param.tekanan
+                            y: param1.getTekanan()
                         });
                     }
                     return data;
@@ -210,7 +227,7 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: param.arahAngin
+                            y: param1.getArahAngin()
                         });
                     }
                     return data;
@@ -226,28 +243,29 @@ $(document).ready(function() {
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: param.kecAngin
-                        });
-                    }
-                    return data;
-                }())
-        },
-        {
-            name: 'Carbon Dioxide',
-            data: (function () {
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: param.co2
+                            y: param1.getKecAngin()
                         });
                     }
                     return data;
                 }())
         }
+        // {
+        //     name: 'Carbon Dioxide',
+        //     data: (function () {
+        //             var data = [],
+        //                 time = (new Date()).getTime(),
+        //                 i;
+
+        //             for (i = -19; i <= 0; i += 1) {
+        //                 data.push({
+        //                     x: time + i * 1000,
+        //                     y: param1.getCo2()
+        //                 });
+        //             }
+        //             return data;
+        //         }())
+        // }
         ]
     });
+
 });
