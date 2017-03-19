@@ -67,4 +67,40 @@ function update() {
         
 }
 
+
+
+var param = {
+  graph : {
+                ketinggian : [],
+                temperature : [],
+                kelembaban : [],
+                tekanan : [],
+                arahAngin : [],
+                kecAngin : [],
+                co2 : []
+  },
+  getDataTemperature : function(){
+    return this.temperature;
+  },
+   getDataKelembaban: function(){
+    return this.kelembaban;
+  },
+   getDataTekanan : function(){
+    return this.tekanan;
+  },
+   getDataArahAngin : function(){
+    return this.arahAngin;
+  },
+   getDataKecAngin : function(){
+    return this.kecAngin;
+  },
+   getDataCo2 : function(){
+    return this.co2;
+   }
+};
+
+
+
+
+
     
