@@ -30,19 +30,19 @@ function update() {
 
 
         Header = data.datahasil[0];
-       // Waktu = parseInt(data.datahasil[1]);
-        Ketinggian = parseInt(data.datahasil[1]);
-        Temperature = parseInt(data.datahasil[2]);
-        Kelembaban = parseInt(data.datahasil[3]);
-        Tekanan = parseInt(data.datahasil[4]);
-        ArahAngin = parseInt(data.datahasil[5]);
-        KecAngin = parseInt(data.datahasil[6]);
+       // Waktu = parseFloat(data.datahasil[1]);
+        Ketinggian = parseFloat(data.datahasil[1]);
+        Temperature = parseFloat(data.datahasil[2]);
+        Kelembaban = parseFloat(data.datahasil[3]);
+        Tekanan = parseFloat(data.datahasil[4]);
+        ArahAngin = parseFloat(data.datahasil[5]);
+        KecAngin = parseFloat(data.datahasil[6]);
         Lintang = parseFloat(data.datahasil[7]);
         Bujur = parseFloat(data.datahasil[8]);
-        co2 = parseInt(data.datahasil[9]);
-        Roll = parseInt(data.datahasil[10]);
-        Pitch = parseInt(data.datahasil[11]);
-        Yaw = parseInt(data.datahasil[12]);
+        co2 = parseFloat(data.datahasil[9]);
+        Roll = parseFloat(data.datahasil[10]);
+        Pitch = parseFloat(data.datahasil[11]);
+        Yaw = parseFloat(data.datahasil[12]);
 
 
 

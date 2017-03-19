@@ -17,25 +17,25 @@ var param1 = {
                 co2 : []
           },
         setKetinggian : function(data){
-            this.ketinggian = parseInt(data);
+            this.ketinggian = parseFloat(data);
         },
         setTemperature : function(data){
-            this.temperature = parseInt(data);
+            this.temperature = parseFloat(data);
         },
         setKelembaban : function(data){
-            this.kelembaban = parseInt(data);
+            this.kelembaban = parseFloat(data);
         },
         setTekanan : function(data){
-            this.tekanan = parseInt(data);
+            this.tekanan = parseFloat(data);
         },
         setArahAngin : function(data){
-            this.arahAngin = parseInt(data);
+            this.arahAngin = parseFloat(data);
         },
         setKecAngin : function(data){
-            this.kecAngin = parseInt(data);
+            this.kecAngin = parseFloat(data);
         },
         setCo2 : function(data){
-            this.co2 = parseInt(data);
+            this.co2 = parseFloat(data);
         },
         getKetinggian : function(){
            return this.ketinggian;
@@ -77,13 +77,13 @@ var socket1 = io.connect();
         param1.setArahAngin(data.data[4]);
         param1.setKecAngin(data.data[5]);
         param1.setCo2(data.data[6]);
-        // ketinggian = parseInt(data.data[0]);
-        // temperature = parseInt(data.data[1]);
-        // kelembaban = parseInt(data.data[2]);
-        // tekanan = parseInt(data.data[3]);
-        // arahAngin = parseInt(data.data[4]);
-        // kecAngin = parseInt(data.data[5]);
-        // co2 = parseInt(data.data[6]);
+        // ketinggian = parseFloat(data.data[0]);
+        // temperature = parseFloat(data.data[1]);
+        // kelembaban = parseFloat(data.data[2]);
+        // tekanan = parseFloat(data.data[3]);
+        // arahAngin = parseFloat(data.data[4]);
+        // kecAngin = parseFloat(data.data[5]);
+        // co2 = parseFloat(data.data[6]);
     });
 }
 

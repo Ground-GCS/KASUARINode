@@ -1,22 +1,10 @@
-var test = [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
-            [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]];
-//console.log(test[1]);
-test[0][1] = 10;
-test[1][1] = 2; //
-test[1][0] = 0;
-test[2][0] = 0;
-console.log(test[0][1]);
-console.log(test);
-
-var myArray = [];
-
 
 function gabungArray(array1 , array2){
     //array1 ketinggian
     //array2 parameter lain
     var hasil = [];
     for (var i = 0 ; i < array1.length; i++){
-        hasil.push([parseInt(array1[i]) , parseInt(array2[i])]);
+        hasil.push([parseFloat(array1[i]) , parseFloat(array2[i])]);
     }
     return hasil;
 }
@@ -51,36 +39,28 @@ function gabungArray(array1 , array2){
 
 
 
- setInterval(function(){
-$.ajax({
-        url: '/data',
-        type: 'GET',
-        dataType: "json",
-        success: function (data) {
+setInterval(function(){
+    $.ajax({
+            url: '/data',
+            type: 'GET',
+            dataType: "json",
+            success: function (data) {
 
-            param.graph.temperature = gabungArray(data.data.ketinggian, data.data.temperature);
-            param.graph.kelembaban  = gabungArray(data.data.ketinggian, data.data.kelembaban);
-            param.graph.tekanan     = gabungArray(data.data.ketinggian, data.data.tekanan);
-            param.graph.arahAngin   = gabungArray(data.data.ketinggian, data.data.arahAngin);
-            param.graph.kecAngin    = gabungArray(data.data.ketinggian, data.data.kecAngin);
-            param.graph.co2         = gabungArray(data.data.ketinggian, data.data.co2);
-        
-            //setTimeout(requestData, 1000);
-            runAllChart();
-        },
-         cache: false
-      });
+                param.graph.temperature = gabungArray(data.data.ketinggian, data.data.temperature);
+                param.graph.kelembaban  = gabungArray(data.data.ketinggian, data.data.kelembaban);
+                param.graph.tekanan     = gabungArray(data.data.ketinggian, data.data.tekanan);
+                param.graph.arahAngin   = gabungArray(data.data.ketinggian, data.data.arahAngin);
+                param.graph.kecAngin    = gabungArray(data.data.ketinggian, data.data.kecAngin);
+                param.graph.co2         = gabungArray(data.data.ketinggian, data.data.co2);
+            
+                //setTimeout(requestData, 1000);
+                runAllChart();
+            },
+             cache: false
+          });
  },10000);
-    // function requestData(){
-     
-    // }
-
-
-
-//$(document).ready(function() {
-
-
-
+    
+runAllChart();
 //        console.log(param.graph.kelembaban);
 function runAllChart() {
 Highcharts.chart('chartTemp', {
@@ -89,13 +69,14 @@ Highcharts.chart('chartTemp', {
         inverted: true,
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: ''
     },
+    credits : false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
@@ -121,7 +102,7 @@ Highcharts.chart('chartTemp', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} m: {point.y}°C'
     },
     plotOptions: {
         spline: {
@@ -133,8 +114,21 @@ Highcharts.chart('chartTemp', {
     series: [{
         name: 'Temperature',
         data: param.graph.temperature
-    }]
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
+
 
 Highcharts.chart('chartKelem', {
     chart: {
@@ -142,13 +136,14 @@ Highcharts.chart('chartKelem', {
         inverted: true
     },
     title: {
-        text: 'Atmosphere Humidity by Altitude'
+        text: ''
     },
+    credits : false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
@@ -160,11 +155,11 @@ Highcharts.chart('chartKelem', {
     },
     yAxis: {
         title: {
-            text: 'Humidity'
+            text: 'Kelembaban'
         },
         labels: {
             formatter: function () {
-                return this.value + '°';
+                return this.value + '%';
             }
         },
         lineWidth: 2
@@ -174,7 +169,7 @@ Highcharts.chart('chartKelem', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} m: {point.y}%'
     },
     plotOptions: {
         spline: {
@@ -184,9 +179,22 @@ Highcharts.chart('chartKelem', {
         }
     },
     series: [{
-        name: 'Humidity',
+        name: 'Kelembaban',
+        color : '#F44336',
         data: param.graph.kelembaban
-    }]
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
 
 Highcharts.chart('chartTekan', {
@@ -195,20 +203,18 @@ Highcharts.chart('chartTekan', {
         inverted: true
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: ''
     },
-    subtitle: {
-        text: 'According to the Standard Atmosphere Model'
-    },
+    credits: false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
-                return this.value + 'km';
+                return this.value + 'm';
             }
         },
         maxPadding: 0.05,
@@ -216,11 +222,11 @@ Highcharts.chart('chartTekan', {
     },
     yAxis: {
         title: {
-            text: 'Temperature'
+            text: 'Tekanan'
         },
         labels: {
             formatter: function () {
-                return this.value + '°';
+                return this.value + 'mbar';
             }
         },
         lineWidth: 2
@@ -230,7 +236,7 @@ Highcharts.chart('chartTekan', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} m: {point.y}mbar'
     },
     plotOptions: {
         spline: {
@@ -240,10 +246,22 @@ Highcharts.chart('chartTekan', {
         }
     },
     series: [{
-        name: 'Temperature',
-        data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
-            [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
-    }]
+        name: 'Tekanan',
+        color : '#CDDC39',
+        data: param.graph.tekanan
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
 
 Highcharts.chart('chartArah', {
@@ -252,20 +270,18 @@ Highcharts.chart('chartArah', {
         inverted: true
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: ''
     },
-    subtitle: {
-        text: 'According to the Standard Atmosphere Model'
-    },
+    credits : false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
-                return this.value + 'km';
+                return this.value + 'm';
             }
         },
         maxPadding: 0.05,
@@ -273,7 +289,7 @@ Highcharts.chart('chartArah', {
     },
     yAxis: {
         title: {
-            text: 'Temperature'
+            text: 'Arah'
         },
         labels: {
             formatter: function () {
@@ -287,7 +303,7 @@ Highcharts.chart('chartArah', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} m: {point.y}°'
     },
     plotOptions: {
         spline: {
@@ -297,10 +313,22 @@ Highcharts.chart('chartArah', {
         }
     },
     series: [{
-        name: 'Temperature',
-        data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
-            [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
-    }]
+        name: 'Arah Angin',
+        color : '#8BC34A',
+        data: param.graph.arahAngin
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
 
 Highcharts.chart('chartKece', {
@@ -309,20 +337,18 @@ Highcharts.chart('chartKece', {
         inverted: true
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: ''
     },
-    subtitle: {
-        text: 'According to the Standard Atmosphere Model'
-    },
+    credits : false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
-                return this.value + 'km';
+                return this.value + 'm';
             }
         },
         maxPadding: 0.05,
@@ -330,11 +356,11 @@ Highcharts.chart('chartKece', {
     },
     yAxis: {
         title: {
-            text: 'Temperature'
+            text: 'Kecepatan Angin'
         },
         labels: {
             formatter: function () {
-                return this.value + '°';
+                return this.value + 'm/s';
             }
         },
         lineWidth: 2
@@ -344,7 +370,7 @@ Highcharts.chart('chartKece', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} m: {point.y}m/s'
     },
     plotOptions: {
         spline: {
@@ -354,10 +380,22 @@ Highcharts.chart('chartKece', {
         }
     },
     series: [{
-        name: 'Temperature',
-        data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
-            [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
-    }]
+        name: 'Kecepatan Angin',
+        color : '#795548',
+        data: param.graph.kecAngin
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
 
 Highcharts.chart('chartCo2', {
@@ -366,20 +404,18 @@ Highcharts.chart('chartCo2', {
         inverted: true
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: ''
     },
-    subtitle: {
-        text: 'According to the Standard Atmosphere Model'
-    },
+    credits : false,
     xAxis: {
         reversed: false,
         title: {
             enabled: true,
-            text: 'Altitude'
+            text: 'Ketinggian'
         },
         labels: {
             formatter: function () {
-                return this.value + 'km';
+                return this.value + 'm';
             }
         },
         maxPadding: 0.05,
@@ -387,11 +423,11 @@ Highcharts.chart('chartCo2', {
     },
     yAxis: {
         title: {
-            text: 'Temperature'
+            text: 'Carbon Dioxide'
         },
         labels: {
             formatter: function () {
-                return this.value + '°';
+                return this.value + 'ppm';
             }
         },
         lineWidth: 2
@@ -401,7 +437,7 @@ Highcharts.chart('chartCo2', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x} km: {point.y}°C'
+        pointFormat: '{point.x} km: {point.y}ppm'
     },
     plotOptions: {
         spline: {
@@ -411,10 +447,22 @@ Highcharts.chart('chartCo2', {
         }
     },
     series: [{
-        name: 'Temperature',
-        data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
-            [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
-    }]
+        name: 'CO2',
+        color : '#673AB7',
+        data: param.graph.co2
+    }],
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    }
 });
 }
 //});
