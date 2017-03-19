@@ -5429,3 +5429,10 @@ ul.notifications {
   color: #FAFAFA;
 }
 
+.fotoudara a img {
+  margin: 10px 10px 10px 10px;
+}
+
+.tombol {
+  margin-left: 20px;
+}
