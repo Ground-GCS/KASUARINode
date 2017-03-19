@@ -293,6 +293,11 @@ zeroPort.on('open', function() {
               param.kecAngin,
               param.co2]
             });
+
+            socket.emit('dataCoordinate', {  
+              data : [ param.latitude,
+              param.longitude]
+            });
  
 
             if (param.ketinggian % 50 > 10){
