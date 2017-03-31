@@ -11,7 +11,7 @@
 
      var stage = Sprite3D.stage(document.querySelector("#sikap"));
 
-     var box = Sprite3D.box(200,50,100, ".box1");
+     var box = Sprite3D.box(100,200,100, ".box1");
      box.rotation(0,0,0)
      box.update();
     // stage.setInnerHTML("sikap")
@@ -40,9 +40,9 @@ function update() {
         Lintang = parseFloat(data.datahasil[7]);
         Bujur = parseFloat(data.datahasil[8]);
         co2 = parseFloat(data.datahasil[9]);
-        Roll = parseFloat(data.datahasil[10]);
-        Pitch = parseFloat(data.datahasil[11]);
-        Yaw = parseFloat(data.datahasil[12]);
+        Yaw = parseFloat(data.datahasil[10]);
+        Roll = parseFloat(data.datahasil[11]);
+        Pitch = parseFloat(data.datahasil[12]);
 
 
 
@@ -60,7 +60,7 @@ function update() {
         $("#ppm").html(co2);        
 
 
-        box.rotation(Roll, Pitch, Yaw).update();
+        box.rotation(Roll, Yaw, Pitch).update();
 
         });
 
