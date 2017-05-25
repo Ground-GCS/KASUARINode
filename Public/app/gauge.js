@@ -70,6 +70,10 @@ var socket1 = io.connect();
 
     socket1.on('dataGraph' , function(data){
         //console.log(data.data[0]); //getfirstelement
+        if(data.data[0] < 0){
+          data.data[0] = 0;
+        }
+
         param1.setKetinggian(data.data[0]);
         param1.setTemperature(data.data[1]);
         param1.setKelembaban(data.data[2]);
@@ -262,8 +266,8 @@ $(function() {
       units: 'mbar',
       title: 'Tekanan',
       minValue: 0,
-      maxValue: 220,
-      majorTicks: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'],
+      maxValue: 800,
+      majorTicks: ['0', '100', '200', '300', '400', '500', '600', '700', '800'],
       minorTicks: 2,
       strokeTicks: true,
       highlights: [{from: 160, to: 220, color: 'rgba(200, 50, 50, .75)'}],

@@ -5,6 +5,8 @@ var app = express(); //run express on app;
 //var php = require('php-node'); //using php on node.js
 var path = require('path'); //path directory lib
 var fs = require('fs'); //manage file.
+var btoa = require('btoa'); //base64
+
 
 var moment = require('moment-timezone'); //config timezone
 moment().tz("Asia/Bangkok").format();
@@ -33,10 +35,14 @@ var datahasil ,
   RAWData , 
   jumlahClient = 0 ,
   dcClient = 0 ,
-  hidup = false ,
+  triggerTakePhoto = false ,
   temp ,
-  save = false;
-  
+  save = false ,
+  nomorGambar = 0,
+  gambar = '',
+  count = 0 ,
+  listGambar = [];
+
 var param = {
   nama : 'KASUARI',
   ketinggian : 0 ,
@@ -48,6 +54,9 @@ var param = {
   latitude : 0.0,
   longitude : 0.0,
   co2 :0,
+  pitch : 0,
+  roll : 0,
+  yaw : 0,
   graph : {
         ketinggian : [],
         temperature : [],
@@ -93,7 +102,8 @@ var param = {
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
         save = true;
-      }else if ((this.ketinggian % 50 == 4) && (save == false)) {
+      }
+      else if ((this.ketinggian % 50 == 4) && (save == false)) {
         this.dataAdd();
         logger.write(this.data() + '\r\n'); //save log
         console.log("Save data to log.txt on " + this.ketinggian + " meter" );
@@ -134,6 +144,24 @@ var param = {
         this.graph.arahAngin.push(this.arahAngin);
         this.graph.kecAngin.push(this.kecAngin);
         this.graph.co2.push(this.co2);
+  } ,
+  savePicture : function() {
+   // var delayMillis = 6000; //6 second
+   
+    // setTimeout(function() {
+    //   //your code to be executed after 6 second
+    //   if(gambar != null) {
+    //     console.log('debug' + this.gambar);
+    //     simpanGambar(gambar);
+    //     triggerTakePhoto = false;
+    //   } else {
+    //     console.log('kurang lama.. retry');
+    //     param.savePicture();
+    //   }
+    // }, delayMillis);
+    
+    //console.log(gambar);
+    //simpanGambar(gambar);
   }
 };
 
@@ -171,15 +199,30 @@ app.get('/temp', function(req , res ) {
   });
 });
 
+const testFolder = 'Public/fotoudara/';
+app.get('/listGambar' , function(req , res) {
+  var files = [];
+  fs.readdirSync(testFolder).forEach(file => {
+    files.push(file);
+  })
+
+  res.json({ data: files});
+
+});
+
 app.get('/data' , function(req , res) {
   res.json({data : param.graph});
+});
+
+app.get('/listImage' , function(req , res) {
+  res.json({data : listGambar});
 });
 
 // configure Serial Port to connect to Arduino
 var zeroPort = new SerialPort(
   portName,
   {
-    baudRate : 57600,
+    baudRate : 115200,
     databits : 8,
     parity : 'none',
     parser : SerialPort.parsers.readline('\r\n')
@@ -213,6 +256,32 @@ function savedataToFile(data){
     }
   });
 }
+
+/*===============================
+=            Picture            =
+===============================*/
+
+function hexToBase64(str) {
+    return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+}
+
+function simpanGambar(data) {
+  //console.log(data);
+  //console.log('yang mau diconvert');
+  var img = "data:image/png;base64," + hexToBase64(data);
+  var data = img.replace(/^data:image\/\w+;base64,/, "");
+  var buf = new Buffer(data, 'base64');
+  nomorGambar++;
+  var waktuFoto = moment().format("HHmmss");
+  listGambar.push(nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg'); //to savve the list
+  fs.writeFile('Public/fotoudara/'+nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg', buf);
+}
+
+
+/*=====  End of Picture  ======*/
+    // save gambar with button
+ 
+
 
 // log data to txt (good use)
 var logger = fs.createWriteStream('log.txt' , {
@@ -264,7 +333,7 @@ zeroPort.on('open', function() {
           //send event in web server
           if (datahasil[0] == "OK" ) { //header
             socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
-            param.ketinggian  = datahasil[1];
+            param.ketinggian  = datahasil[1]; 
             param.temperature = datahasil[2]; 
             param.kelembaban  = datahasil[3];
             param.tekanan     = datahasil[4];
@@ -272,8 +341,38 @@ zeroPort.on('open', function() {
             param.kecAngin    = datahasil[6];
             param.latitude    = datahasil[7];
             param.longitude   = datahasil[8];
-            param.co2         = datahasil[9];   
+            param.co2         = datahasil[9];
+            param.pitch       = datahasil[10];
+            param.roll        = datahasil[11];
+            param.yaw         = datahasil[12];
 
+            if ((datahasil[13].length > 0)){
+              count == 0;
+              gambar      = datahasil[13];
+              console.log('Dapet Gambar' + gambar);
+               triggerTakePhoto = true;
+               //simpanGambar(gambar);
+              //param.savePicture();
+              //console.log('pict : ' + gambar);
+               if (triggerTakePhoto == true && count == 0) {
+                  console.log('masuksini\n');
+                  simpanGambar(gambar);
+                  // console.log(gambar);
+                  triggerTakePhoto = false;
+                  count++;
+                } 
+            } 
+
+            //triggerTakePhoto = false;
+            
+
+               // if (triggerTakePhoto == true) {
+               //  simpanGambar(gambar);
+               //  console.log(gambar);
+               //  triggerTakePhoto = false;
+               //  }
+
+            //console.log(param.gambar);
             socket.emit('dataGraph', {  
               data : [ param.ketinggian,
               param.temperature,
@@ -298,20 +397,35 @@ zeroPort.on('open', function() {
               data : [ param.latitude,
               param.longitude]
             });
+
+            socket.emit('pathGambar' , {
+              data : listGambar
+            });
  
 
             if (param.ketinggian % 50 > 10){
               save = false;
             }
 
+
+            // if (param.ketinggian % 5 > 3){
+            //   save = false;
+            // }
+            // if (triggerTakePhoto){
+            //   param.savePicture();
+            // }
+
             param.logFile();
             //logger.write(datahasil + '\r\n'); //save log
+
           }
 
-          socket.emit('button', hidup ); //just button to LEDon
-          socket.emit('tempDB',  temp); //wtf
+          //socket.emit('button', triggerTakePhoto ); //just button to LEDon
+          //socket.emit('tempDB',  temp); //wtf
           //savedataToFile(datahasil); //baduse
         });
+
+  
          
       //handle disconnect users
       socket.on('disconnect' , function() {
@@ -322,27 +436,21 @@ zeroPort.on('open', function() {
       });
 
       //receive socket emit from browser
-      socket.on('stop' , function(data) {
-          zeroPort.write('0'); //send 0 to arduino
-      });
+      // socket.on('stop' , function(data) {
+      //     zeroPort.write('0'); //send 0 to arduino
+      // });
 
-      socket.on('startAgain', function(data){
-        zeroPort.write('1');
+      // socket.on('startAgain', function(data){
+      //   zeroPort.write('1');
+      // });
+    
+      socket.on('takePict' , function(data){
+        zeroPort.write('2');
       });
     
-      socket.on('LedON' , function(data){
-        zeroPort.write('2');
-        hidup = true;
-      });
-
-      socket.on('LedOff', function(data){
-        zeroPort.write('3');
-        hidup = false;
-      });
-
-      socket.on('water', function(data){
-        zeroPort.write('4');
-      });
 
     });
+
+
+
 });

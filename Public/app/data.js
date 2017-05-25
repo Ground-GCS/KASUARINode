@@ -7,7 +7,7 @@
           KecRes = [],
           TekananRes = [],
           path = [];
-
+      var imgs;
 
      var stage = Sprite3D.stage(document.querySelector("#sikap"));
 
@@ -40,10 +40,14 @@ function update() {
         Lintang = parseFloat(data.datahasil[7]);
         Bujur = parseFloat(data.datahasil[8]);
         co2 = parseFloat(data.datahasil[9]);
-        Yaw = parseFloat(data.datahasil[10]);
+        Pitch = parseFloat(data.datahasil[10]); 
         Roll = parseFloat(data.datahasil[11]);
-        Pitch = parseFloat(data.datahasil[12]);
+        Yaw = parseFloat(data.datahasil[12]);
 
+
+        if (Ketinggian < 0) {
+          Ketinggian = 0;
+        }
 
 
           //Tampil ke id class
@@ -59,8 +63,19 @@ function update() {
         $("#bujur").html(Bujur);
         $("#ppm").html(co2);        
 
+       // console.log((360.00-Pitch) + ' ' +  (360.00-Yaw) + ' ' + (360.00-Roll));
+        console.log((Pitch) + ' ' +  (Yaw) + ' ' + (Roll));
+        //box.rotation((360.00-Pitch), (360.00-Yaw), (360.00-Roll)).update();
+        box.rotation((Pitch), (Yaw), (Roll)).update();
 
-        box.rotation(Roll, Yaw, Pitch).update();
+        });
+
+        socket.on('pathGambar' , function(data){
+        //console.log(data);
+        //imgs.push(data.data[0]);
+          imgs = data.data[0];
+          // /console.log(imgs);
+          document.getElementById("realtimeFoto").src="fotoudara/"+imgs;
 
         });
 

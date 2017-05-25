@@ -4224,3 +4224,230 @@ KASUARI	16:53:52	9306	-8	29	64	21	9	-4.832894802	109.690666198	1440
 KASUARI	16:53:53	9351	32	42	298	43	28	-4.825895309	109.697662353	588
 KASUARI	16:53:54	9403	42	44	238	335	7	-4.814896106	109.708656311	2949
 KASUARI	16:53:55	9451	4	98	175	201	22	-4.802896976	109.720649719	4597
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+KASUARI	09:40:09	8.00	28.0	42.0	467.22	18	0.00	-6.976080	107.630393	534.38
+KASUARI	09:42:31	5.00	27.0	45.0	467.39	18	0.00	-6.976076	107.630447	762.50
+KASUARI	09:42:36	5.00	27.0	46.0	467.39	18	0.00	-6.976079	107.630447	762.50
+KASUARI	09:42:49	5.00	27.0	46.0	467.39	18	0.00	-6.976079	107.630439	762.50
+KASUARI	09:42:56	5.00	27.0	46.0	467.39	18	0.00	-6.976074	107.630432	671.88
+KASUARI	09:43:09	5.00	27.0	46.0	467.39	18	0.00	-6.976069	107.630424	703.13
+KASUARI	09:43:10	5.00	27.0	47.0	467.39	18	0.00	-6.976068	107.630424	884.38
+KASUARI	09:43:14	5.00	27.0	47.0	467.39	18	0.00	-6.976063	107.630416	825.00
+KASUARI	09:43:22	5.00	27.0	46.0	467.39	18	0.00	-6.976063	107.630416	625.00
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
+ID 	 Waktu 	 Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang 	 Bujur     	 CO2
+[==========================================================================================================]
