@@ -71,9 +71,9 @@ function update() {
         });
 
         socket.on('pathGambar' , function(data){
-        //console.log(data);
+        console.log(data);
         //imgs.push(data.data[0]);
-          imgs = data.data[0];
+          imgs = data.data;
           // /console.log(imgs);
           document.getElementById("realtimeFoto").src="fotoudara/"+imgs;
 

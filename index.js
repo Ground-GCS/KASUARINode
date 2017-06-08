@@ -38,13 +38,16 @@ var datahasil ,
   triggerTakePhoto = false ,
   temp ,
   save = false ,
+  stopped = false,
+  lanjutkan = false,
   nomorGambar = 0,
   gambar = '',
   count = 0 ,
+  oneImagePath = '',
   listGambar = [];
 
 var param = {
-  nama : 'KASUARI',
+  nama : '621',
   ketinggian : 0 ,
   temperature : 0, 
   kelembaban : 0,
@@ -266,7 +269,7 @@ function hexToBase64(str) {
 }
 
 function simpanGambar(data) {
-  //console.log(data);
+  console.log(data);
   //console.log('yang mau diconvert');
   var img = "data:image/png;base64," + hexToBase64(data);
   var data = img.replace(/^data:image\/\w+;base64,/, "");
@@ -275,6 +278,7 @@ function simpanGambar(data) {
   var waktuFoto = moment().format("HHmmss");
   listGambar.push(nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg'); //to savve the list
   fs.writeFile('Public/fotoudara/'+nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg', buf);
+  oneImagePath = nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg';
 }
 
 
@@ -318,61 +322,110 @@ zeroPort.on('open', function() {
   // }, 1200000);
 
 
+  //get data from arduino
+  zeroPort.on('data', function(data) {
+    RAWData = data.toString();
+    RAWData = RAWData.replace(/(\r\n|\n|\r)/gm,""); //word replacer to simply parsing
+    datahasil = RAWData.split(','); //split the data with ,
+    //console.log(RAWData);
+    //send event in web server
+    if (datahasil[0] == "OK" ) { //header
+      //socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
+      param.ketinggian  = datahasil[1]; 
+      param.temperature = datahasil[2]; 
+      param.kelembaban  = datahasil[3];
+      param.tekanan     = datahasil[4];
+      param.arahAngin   = datahasil[5];
+      param.kecAngin    = datahasil[6];
+      param.latitude    = datahasil[7];
+      param.longitude   = datahasil[8];
+      param.co2         = datahasil[9];
+      param.pitch       = datahasil[10];
+      param.roll        = datahasil[11];
+      param.yaw         = datahasil[12];
+      
+      
+      if ((datahasil[13] != "IMG") && (datahasil[13] != "")){
+
+        // check first img data contains FFD8? 
+        if ((datahasil[13].indexOf("FFD8") >= 0) && (count == 0)) {
+          lanjutkan = true;
+          console.log('setlanjutkantrue');
+        }
+
+        // first appear sesuai
+        if (lanjutkan == true){
+          // tampung gambar
+          gambar = gambar + datahasil[13];
+        }
+        console.log(count);
+        count++;
+
+
+        // check akhir string ada FFD9 (akhir dari JPEG)
+        if (datahasil[13].slice(-4) == "FFD9") {
+          console.log('Save image ...');
+          simpanGambar(gambar);
+          lanjutkan = false; //set ke false lanjutkan biar ngcek lagi paspertama
+          count = 0;
+          gambar = ''; //set ke kosong lagi
+        }
+
+
+        
+      } 
+
+      //to convert the pictures 
+
+
+      if (param.ketinggian % 50 > 10){
+        save = false;
+      }
+
+      //triggerTakePhoto = false;
+      
+
+         // if (triggerTakePhoto == true) {
+         //  simpanGambar(gambar);
+         //  console.log(gambar);
+         //  triggerTakePhoto = false;
+         //  }
+
+
+      // if (param.ketinggian % 50 > 10){
+      //   save = false;
+      // }
+
+
+      // // if (param.ketinggian % 5 > 3){
+      // //   save = false;
+      // // }
+      // // if (triggerTakePhoto){
+      // //   param.savePicture();
+      // // }
+
+      param.logFile(); // command to save the data in log file;
+      //logger.write(datahasil + '\r\n'); //save log
+      stopped = false;
+      //kirimdataplis();
+
+    } else if (datahasil[0] != "OK") {
+      // do berhet\nti
+      stopped = true;
+    }
+  });
 
   //io.socket main communication
   io.on('connection' , function(socket){
       jumlahClient++;
       console.log('Number of Client : ' + jumlahClient);
 
-      //get data from arduino
+      // //get data from arduino
+      // call again to get event
       zeroPort.on('data', function(data) {
-          RAWData = data.toString();
-          RAWData = RAWData.replace(/(\r\n|\n|\r)/gm,""); //word replacer to simply parsing
-          datahasil = RAWData.split(','); //split the data with ,
+     
+          socket.emit('kirim', {datahasil:datahasil});  
 
-          //send event in web server
-          if (datahasil[0] == "OK" ) { //header
-            socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
-            param.ketinggian  = datahasil[1]; 
-            param.temperature = datahasil[2]; 
-            param.kelembaban  = datahasil[3];
-            param.tekanan     = datahasil[4];
-            param.arahAngin   = datahasil[5];
-            param.kecAngin    = datahasil[6];
-            param.latitude    = datahasil[7];
-            param.longitude   = datahasil[8];
-            param.co2         = datahasil[9];
-            param.pitch       = datahasil[10];
-            param.roll        = datahasil[11];
-            param.yaw         = datahasil[12];
-
-            if ((datahasil[13].length > 0)){
-              count == 0;
-              gambar      = datahasil[13];
-              console.log('Dapet Gambar' + gambar);
-               triggerTakePhoto = true;
-               //simpanGambar(gambar);
-              //param.savePicture();
-              //console.log('pict : ' + gambar);
-               if (triggerTakePhoto == true && count == 0) {
-                  console.log('masuksini\n');
-                  simpanGambar(gambar);
-                  // console.log(gambar);
-                  triggerTakePhoto = false;
-                  count++;
-                } 
-            } 
-
-            //triggerTakePhoto = false;
-            
-
-               // if (triggerTakePhoto == true) {
-               //  simpanGambar(gambar);
-               //  console.log(gambar);
-               //  triggerTakePhoto = false;
-               //  }
-
-            //console.log(param.gambar);
             socket.emit('dataGraph', {  
               data : [ param.ketinggian,
               param.temperature,
@@ -399,34 +452,12 @@ zeroPort.on('open', function() {
             });
 
             socket.emit('pathGambar' , {
-              data : listGambar
+              data : oneImagePath
             });
  
-
-            if (param.ketinggian % 50 > 10){
-              save = false;
-            }
-
-
-            // if (param.ketinggian % 5 > 3){
-            //   save = false;
-            // }
-            // if (triggerTakePhoto){
-            //   param.savePicture();
-            // }
-
-            param.logFile();
-            //logger.write(datahasil + '\r\n'); //save log
-
-          }
-
-          //socket.emit('button', triggerTakePhoto ); //just button to LEDon
-          //socket.emit('tempDB',  temp); //wtf
-          //savedataToFile(datahasil); //baduse
         });
 
   
-         
       //handle disconnect users
       socket.on('disconnect' , function() {
           dcClient++;
