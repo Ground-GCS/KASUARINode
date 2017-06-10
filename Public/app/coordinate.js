@@ -30,7 +30,7 @@ function mapUpdate(){
 
 	 //Make map
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
+          zoom: 17,
           center: {lat: param.getLintang(), lng : param.getBujur(), alt: 0}
         });
 

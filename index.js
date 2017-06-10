@@ -38,6 +38,7 @@ var datahasil ,
   triggerTakePhoto = false ,
   temp ,
   save = false ,
+  valid = false,
   stopped = false,
   lanjutkan = false,
   nomorGambar = 0,
@@ -56,6 +57,10 @@ var param = {
   kecAngin : 0,
   latitude : 0.0,
   longitude : 0.0,
+  startLatitude : 0.0 ,
+  startLongitude : 0.0 ,
+  endLatitude : 0.0,
+  endLongitude : 0.0,
   co2 :0,
   pitch : 0,
   roll : 0,
@@ -328,92 +333,128 @@ zeroPort.on('open', function() {
     RAWData = RAWData.replace(/(\r\n|\n|\r)/gm,""); //word replacer to simply parsing
     datahasil = RAWData.split(','); //split the data with ,
     //console.log(RAWData);
+    //console.log(datahasil.length);
     //send event in web server
-    if (datahasil[0] == "OK" ) { //header
+    if (datahasil.length == 14) {
+      if (datahasil[0] == "OK") { //header
       //socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
+      valid = true;
       param.ketinggian  = datahasil[1]; 
       param.temperature = datahasil[2]; 
       param.kelembaban  = datahasil[3];
       param.tekanan     = datahasil[4];
-      param.arahAngin   = datahasil[5];
+      // param.arahAngin   = datahasil[5];
       param.kecAngin    = datahasil[6];
-      param.latitude    = datahasil[7];
-      param.longitude   = datahasil[8];
+
+      if (datahasil[7] != "********** ") {
+        param.latitude    = datahasil[7];
+        param.longitude   = datahasil[8];
+      } 
+
       param.co2         = datahasil[9];
       param.pitch       = datahasil[10];
       param.roll        = datahasil[11];
       param.yaw         = datahasil[12];
       
       
-      if ((datahasil[13] != "IMG") && (datahasil[13] != "")){
+        if ((datahasil[13] != "IMG") && (datahasil[13] != "")){
 
-        // check first img data contains FFD8? 
-        if ((datahasil[13].indexOf("FFD8") >= 0) && (count == 0)) {
-          lanjutkan = true;
-          console.log('setlanjutkantrue');
+          // check first img data contains FFD8? 
+          if ((datahasil[13].indexOf("FFD8") >= 0) && (count == 0)) {
+            lanjutkan = true;
+            console.log('setlanjutkantrue');
+          }
+
+          // first appear sesuai
+          if (lanjutkan == true){
+            // tampung gambar
+            gambar = gambar + datahasil[13];
+          }
+          console.log(count);
+          count++;
+
+
+          // check akhir string ada FFD9 (akhir dari JPEG)
+          if (datahasil[13].slice(-4) == "FFD9") {
+            console.log('Save image ...');
+            simpanGambar(gambar);
+            lanjutkan = false; //set ke false lanjutkan biar ngcek lagi paspertama
+            count = 0;
+            gambar = ''; //set ke kosong lagi
+          }
+          
+        } 
+
+        //to convert the pictures 
+
+
+        if (param.ketinggian % 50 > 10){
+          save = false;
         }
 
-        // first appear sesuai
-        if (lanjutkan == true){
-          // tampung gambar
-          gambar = gambar + datahasil[13];
-        }
-        console.log(count);
-        count++;
+        //triggerTakePhoto = false;
+        
+
+           // if (triggerTakePhoto == true) {
+           //  simpanGambar(gambar);
+           //  console.log(gambar);
+           //  triggerTakePhoto = false;
+           //  }
 
 
-        // check akhir string ada FFD9 (akhir dari JPEG)
-        if (datahasil[13].slice(-4) == "FFD9") {
-          console.log('Save image ...');
-          simpanGambar(gambar);
-          lanjutkan = false; //set ke false lanjutkan biar ngcek lagi paspertama
-          count = 0;
-          gambar = ''; //set ke kosong lagi
-        }
+        // if (param.ketinggian % 50 > 10){
+        //   save = false;
+        // }
 
+
+        // // if (param.ketinggian % 5 > 3){
+        // //   save = false;
+        // // }
+        // // if (triggerTakePhoto){
+        // //   param.savePicture();
+        // // }
+
+        param.logFile(); // command to save the data in log file;
+        //logger.write(datahasil + '\r\n'); //save log
+        stopped = false;
+        //kirimdataplis();
 
         
-      } 
 
-      //to convert the pictures 
-
-
-      if (param.ketinggian % 50 > 10){
-        save = false;
+      } else if (datahasil[0] != "OK") {
+        // do berhet\nti
+        stopped = true;
       }
-
-      //triggerTakePhoto = false;
-      
-
-         // if (triggerTakePhoto == true) {
-         //  simpanGambar(gambar);
-         //  console.log(gambar);
-         //  triggerTakePhoto = false;
-         //  }
-
-
-      // if (param.ketinggian % 50 > 10){
-      //   save = false;
-      // }
-
-
-      // // if (param.ketinggian % 5 > 3){
-      // //   save = false;
-      // // }
-      // // if (triggerTakePhoto){
-      // //   param.savePicture();
-      // // }
-
-      param.logFile(); // command to save the data in log file;
-      //logger.write(datahasil + '\r\n'); //save log
-      stopped = false;
-      //kirimdataplis();
-
-    } else if (datahasil[0] != "OK") {
-      // do berhet\nti
-      stopped = true;
+    } else {
+      valid = false;
     }
+
+    
   });
+
+  // calculate bearing
+  setInterval(
+    function() {
+      if ((valid == true) && (datahasil[7] != "********** ")) {
+        
+        setTimeout( function() {
+          param.startLatitude = datahasil[7];
+          param.startLongitude = datahasil[8];
+          console.log('start');
+
+        } , 1000); //delay 1 secodns
+
+        param.endLatitude = datahasil[7];
+        param.endLongitude = datahasil[8];
+        console.log('end');
+
+        param.arahAngin = getBearing(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude);
+        param.kecAngin = distance(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude , 0 , 0);
+        console.log(param.arahAngin);
+        console.log(param.kecAngin);
+      }
+    }
+  , 2000);
 
   //io.socket main communication
   io.on('connection' , function(socket){
@@ -454,6 +495,10 @@ zeroPort.on('open', function() {
             socket.emit('pathGambar' , {
               data : oneImagePath
             });
+
+            socket.emit('angin' , {
+              data : param.arahAngin
+            });
  
         });
 
@@ -485,3 +530,69 @@ zeroPort.on('open', function() {
 
 
 });
+
+
+function radians(n) {
+  return n * (Math.PI / 180);
+}
+function degrees(n) {
+  return n * (180 / Math.PI);
+}
+
+function getBearing(startLat,startLong,endLat,endLong){
+  startLat = parseFloat(startLat);
+  startLong = parseFloat(startLong);
+  endLat = parseFloat(endLat);
+  endLong = parseFloat(endLong);
+
+  startLat = radians(startLat);
+  startLong = radians(startLong);
+  endLat = radians(endLat);
+  endLong = radians(endLong);
+
+  var dLong = endLong - startLong;
+
+  var dPhi = Math.log(Math.tan(endLat/2.0+Math.PI/4.0)/Math.tan(startLat/2.0+Math.PI/4.0));
+  if (Math.abs(dLong) > Math.PI){
+    if (dLong > 0.0)
+       dLong = -(2.0 * Math.PI - dLong);
+    else
+       dLong = (2.0 * Math.PI + dLong);
+  }
+
+  return (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0;
+}
+
+/**
+ * Calculate distance between two points in latitude and longitude taking
+ * into account height difference. If you are not interested in height
+ * difference pass 0.0. Uses Haversine method as its base.
+ * 
+ * lat1, lon1 Start point lat2, lon2 End point el1 Start altitude in meters
+ * el2 End altitude in meters
+ * @returns Distance in Meters
+ */
+function distance(lat1,lon1,lat2,
+        lon2, el1,  el2) {
+
+    var R = 6371; // Radius of the earth
+    el1 = 0;
+    el2 = 0;
+
+    var latDistance = radians(lat2 - lat1);
+    var lonDistance = radians(lon2 - lon1);
+    var a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+            + Math.cos(radians(lat1)) * Math.cos(radians(lat2))
+            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var distance = R * c * 1000; // convert to meters
+
+    var height = el1 - el2;
+
+    var distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+    return Math.sqrt(distance).toFixed(2);
+    //lat1 = radians(lat1);
+    //lat2 = radians(lat2);
+
+}

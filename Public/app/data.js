@@ -57,27 +57,31 @@ function update() {
         $("#kelembaban").html(Kelembaban);
         $("#ketinggian").html(Ketinggian);
         $("#tekanan").html(Tekanan);
-        $("#arahangin").html(ArahAngin);
+        //$("#arahangin").html(ArahAngin);
         $("#KecAngin").html(KecAngin);
         $("#lintang").html(Lintang);
         $("#bujur").html(Bujur);
         $("#ppm").html(co2);        
 
        // console.log((360.00-Pitch) + ' ' +  (360.00-Yaw) + ' ' + (360.00-Roll));
-        console.log((Pitch) + ' ' +  (Yaw) + ' ' + (Roll));
+        //console.log((Pitch) + ' ' +  (Yaw) + ' ' + (Roll));
         //box.rotation((360.00-Pitch), (360.00-Yaw), (360.00-Roll)).update();
         box.rotation((Pitch), (Yaw), (Roll)).update();
 
         });
 
         socket.on('pathGambar' , function(data){
-        console.log(data);
+        //console.log(data);
         //imgs.push(data.data[0]);
           imgs = data.data;
           // /console.log(imgs);
           document.getElementById("realtimeFoto").src="fotoudara/"+imgs;
 
         });
+
+        socket.on('angin' , function(data) {
+          $("#arahangin").html(parseFloat(data.data).toFixed(2));
+        })
 
         
 }
