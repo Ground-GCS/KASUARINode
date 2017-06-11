@@ -35,8 +35,8 @@ function update() {
         Temperature = parseFloat(data.datahasil[2]);
         Kelembaban = parseFloat(data.datahasil[3]);
         Tekanan = parseFloat(data.datahasil[4]);
-        ArahAngin = parseFloat(data.datahasil[5]);
-        KecAngin = parseFloat(data.datahasil[6]);
+       // ArahAngin = parseFloat(data.datahasil[5]);
+        //KecAngin = parseFloat(data.datahasil[6]);
         Lintang = parseFloat(data.datahasil[7]);
         Bujur = parseFloat(data.datahasil[8]);
         co2 = parseFloat(data.datahasil[9]);
@@ -58,7 +58,7 @@ function update() {
         $("#ketinggian").html(Ketinggian);
         $("#tekanan").html(Tekanan);
         //$("#arahangin").html(ArahAngin);
-        $("#KecAngin").html(KecAngin);
+        //$("#KecAngin").html(KecAngin);
         $("#lintang").html(Lintang);
         $("#bujur").html(Bujur);
         $("#ppm").html(co2);        
@@ -80,7 +80,9 @@ function update() {
         });
 
         socket.on('angin' , function(data) {
-          $("#arahangin").html(parseFloat(data.data).toFixed(2));
+          //console.log(data);
+          $("#arahangin").html(parseFloat(data.data[0]).toFixed(2));
+          $("#KecAngin").html(data.data[1]);
         })
 
         

@@ -152,61 +152,10 @@ var param = {
         this.graph.arahAngin.push(this.arahAngin);
         this.graph.kecAngin.push(this.kecAngin);
         this.graph.co2.push(this.co2);
-  } ,
-  savePicture : function() {
-   // var delayMillis = 6000; //6 second
-   
-    // setTimeout(function() {
-    //   //your code to be executed after 6 second
-    //   if(gambar != null) {
-    //     console.log('debug' + this.gambar);
-    //     simpanGambar(gambar);
-    //     triggerTakePhoto = false;
-    //   } else {
-    //     console.log('kurang lama.. retry');
-    //     param.savePicture();
-    //   }
-    // }, delayMillis);
-    
-    //console.log(gambar);
-    //simpanGambar(gambar);
-  }
+  } 
 };
 
-//create MySQL connection 
-// var mysql = require('mysql');
-// var zeroDB = mysql.createConnection({
-//   host : 'localhost',
-//   user : 'root',
-//   password : 'noczero',
-//   database : 'zeroWeather'
-// });
-
-// check MySQL connection 
-// zeroDB.connect(function(err) {
-//   if (err) {
-//     console.error('error connecting: ' + err.stack);
-//     return;
-//   }
-//   console.log('Success, Database connected... \n connected as id ' + zeroDB.threadId);
-// });
-
-//get query from mysql for humidity
-app.get('/humid', function(req ,res){
-  zeroDB.query('SELECT nilai, UNIX_TIMESTAMP(waktu) as waktu FROM humidity' , function(error, results , fields){
-    if (error) throw error;
-    res.json({ data : results}); //kirim json data hasil query
-  });
-});
-
-//get query from mysql for temperature
-app.get('/temp', function(req , res ) {
-  zeroDB.query('SELECT nilai , UNIX_TIMESTAMP(waktu) as waktu FROM temperature ', function(error , results , fields){
-    if (error) throw error;
-    res.json({data : results}); //kirim json data hasil query
-  });
-});
-
+/*----------  FIle Save  ----------*/
 const testFolder = 'Public/fotoudara/';
 app.get('/listGambar' , function(req , res) {
   var files = [];
@@ -218,6 +167,7 @@ app.get('/listGambar' , function(req , res) {
 
 });
 
+/*----------  JSON  ----------*/
 app.get('/data' , function(req , res) {
   res.json({data : param.graph});
 });
@@ -226,6 +176,7 @@ app.get('/listImage' , function(req , res) {
   res.json({data : listGambar});
 });
 
+/*----------  Serial COnnection  ----------*/
 // configure Serial Port to connect to Arduino
 var zeroPort = new SerialPort(
   portName,
@@ -236,34 +187,6 @@ var zeroPort = new SerialPort(
     parser : SerialPort.parsers.readline('\r\n')
   });
 
-
-//post humidity data
-function insertHumid(data){
-  zeroDB.query('INSERT INTO humidity SET nilai=? ' , data ,function(err, result) { 
-    if(err){
-      console.log(err);
-    } 
-  });
-}
-
-//post temperature data
-function insertTemp(data){
-  zeroDB.query('INSERT INTO temperature SET nilai=? ' , data ,function(err, result) { 
-    if(err){
-      console.log(err);
-    } 
-  });
-}
-
-//Bad use
-function savedataToFile(data){
-    //save log to file txt
-  fs.appendFile('log.txt' , data , function (err){
-    if (err) {
-      console.log(err);
-    }
-  });
-}
 
 /*===============================
 =            Picture            =
@@ -299,8 +222,11 @@ var logger = fs.createWriteStream('log.txt' , {
 logger.write("ID \t Waktu \t Ketinggian   Suhu  Humid  Tekanan  Arah-Angin  Kec-Angin  Lintang \t Bujur     \t CO2" + "\r\n");
 logger.write("[==========================================================================================================]" + "\r\n");
 
+
+/*----------  Start Main  ----------*/
 zeroPort.on('open', function() {
-  console.log('ZeroSystem-IoT Started');
+
+  console.log('KASUARI APTRG Started');
   console.log('======================');
   console.log('Port Open, Server on port ' + portNumber);
 
@@ -314,17 +240,6 @@ zeroPort.on('open', function() {
     console.log('Started....');
     });
   }, delayMillis);
-
-  //post data to mysql every 20 minutes
-  // setInterval(function(){
-  //   if (datahasil[0] != null){
-  //     insertHumid(datahasil[1]);
-  //     insertTemp(datahasil[2]);
-  //     console.log('Insert into Database every 20 minutes');
-  //   } else {
-  //     console.log('404:datahasil not found');
-  //   }
-  // }, 1200000);
 
 
   //get data from arduino
@@ -344,7 +259,7 @@ zeroPort.on('open', function() {
       param.kelembaban  = datahasil[3];
       param.tekanan     = datahasil[4];
       // param.arahAngin   = datahasil[5];
-      param.kecAngin    = datahasil[6];
+      // param.kecAngin    = datahasil[6];
 
       if (datahasil[7] != "********** ") {
         param.latitude    = datahasil[7];
@@ -392,34 +307,9 @@ zeroPort.on('open', function() {
           save = false;
         }
 
-        //triggerTakePhoto = false;
         
-
-           // if (triggerTakePhoto == true) {
-           //  simpanGambar(gambar);
-           //  console.log(gambar);
-           //  triggerTakePhoto = false;
-           //  }
-
-
-        // if (param.ketinggian % 50 > 10){
-        //   save = false;
-        // }
-
-
-        // // if (param.ketinggian % 5 > 3){
-        // //   save = false;
-        // // }
-        // // if (triggerTakePhoto){
-        // //   param.savePicture();
-        // // }
-
         param.logFile(); // command to save the data in log file;
-        //logger.write(datahasil + '\r\n'); //save log
         stopped = false;
-        //kirimdataplis();
-
-        
 
       } else if (datahasil[0] != "OK") {
         // do berhet\nti
@@ -497,7 +387,7 @@ zeroPort.on('open', function() {
             });
 
             socket.emit('angin' , {
-              data : param.arahAngin
+              data : [ param.arahAngin , param.kecAngin]
             });
  
         });
@@ -526,9 +416,6 @@ zeroPort.on('open', function() {
     
 
     });
-
-
-
 });
 
 
@@ -592,7 +479,5 @@ function distance(lat1,lon1,lat2,
     var distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
     return Math.sqrt(distance).toFixed(2);
-    //lat1 = radians(lat1);
-    //lat2 = radians(lat2);
 
 }
