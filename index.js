@@ -61,6 +61,8 @@ var param = {
   startLongitude : 0.0 ,
   endLatitude : 0.0,
   endLongitude : 0.0,
+  imgAltitude : 0.0 ,
+  imgTime : 0,
   co2 :0,
   pitch : 0,
   roll : 0,
@@ -81,8 +83,8 @@ var param = {
                   + this.temperature + "\t" 
                   + this.kelembaban + "\t" 
                   + this.tekanan + "\t" 
-                  + this.arahAngin + "\t" 
-                  + this.kecAngin + "\t" 
+                  + parseFloat(this.arahAngin).toFixed(2) + "\t" 
+                  + parseFloat(this.kecAngin).toFixed(2) + "\t" 
                   + this.latitude + "\t"
                   + this.longitude + "\t"
                   + this.co2 ;
@@ -197,16 +199,15 @@ function hexToBase64(str) {
 }
 
 function simpanGambar(data) {
-  console.log(data);
+  //console.log(data);
   //console.log('yang mau diconvert');
   var img = "data:image/png;base64," + hexToBase64(data);
   var data = img.replace(/^data:image\/\w+;base64,/, "");
   var buf = new Buffer(data, 'base64');
   nomorGambar++;
-  var waktuFoto = moment().format("HHmmss");
-  listGambar.push(nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg'); //to savve the list
-  fs.writeFile('Public/fotoudara/'+nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg', buf);
-  oneImagePath = nomorGambar+'_'+param.ketinggian+'_'+waktuFoto+'.jpeg';
+  listGambar.push(nomorGambar+'_'+param.imgAltitude+'_'+param.imgTime+'.jpeg'); //to savve the list
+  fs.writeFile('Public/fotoudara/'+nomorGambar+'_'+param.imgAltitude+'_'+param.imgTime+'.jpeg', buf);
+  oneImagePath = nomorGambar+'_'+param.imgAltitude+'_'+param.imgTime+'.jpeg';
 }
 
 
@@ -254,14 +255,18 @@ zeroPort.on('open', function() {
       if (datahasil[0] == "OK") { //header
       //socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
       valid = true;
-      param.ketinggian  = datahasil[1]; 
-      param.temperature = datahasil[2]; 
-      param.kelembaban  = datahasil[3];
+      param.ketinggian  = datahasil[1];
+      
+      if (datahasil[2] != "0.00") {
+        param.temperature = datahasil[2]; 
+        param.kelembaban  = datahasil[3];
+      }
+
       param.tekanan     = datahasil[4];
       // param.arahAngin   = datahasil[5];
       // param.kecAngin    = datahasil[6];
 
-      if (datahasil[7] != "********** ") {
+      if (datahasil[7] != "********** " || datahasil[8] != "0.000000 " || datahasil[8] != "0.000000" ) {
         param.latitude    = datahasil[7];
         param.longitude   = datahasil[8];
       } 
@@ -277,6 +282,8 @@ zeroPort.on('open', function() {
           // check first img data contains FFD8? 
           if ((datahasil[13].indexOf("FFD8") >= 0) && (count == 0)) {
             lanjutkan = true;
+            param.imgTime = moment().format("HHmmss");
+            param.imgAltitude = param.ketinggian;
             console.log('setlanjutkantrue');
           }
 
@@ -285,7 +292,7 @@ zeroPort.on('open', function() {
             // tampung gambar
             gambar = gambar + datahasil[13];
           }
-          console.log(count);
+          //console.log(count);
           count++;
 
 
@@ -300,13 +307,9 @@ zeroPort.on('open', function() {
           
         } 
 
-        //to convert the pictures 
-
-
         if (param.ketinggian % 50 > 10){
           save = false;
         }
-
         
         param.logFile(); // command to save the data in log file;
         stopped = false;
@@ -322,7 +325,7 @@ zeroPort.on('open', function() {
     
   });
 
-  // calculate bearing
+  // calculate kecepatan angin dan arah angin
   setInterval(
     function() {
       if ((valid == true) && (datahasil[7] != "********** ")) {
@@ -330,18 +333,20 @@ zeroPort.on('open', function() {
         setTimeout( function() {
           param.startLatitude = datahasil[7];
           param.startLongitude = datahasil[8];
-          console.log('start');
-
+          // console.log('start');
         } , 1000); //delay 1 secodns
 
         param.endLatitude = datahasil[7];
         param.endLongitude = datahasil[8];
-        console.log('end');
+        // console.log('end');
 
-        param.arahAngin = getBearing(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude);
-        param.kecAngin = distance(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude , 0 , 0);
-        console.log(param.arahAngin);
-        console.log(param.kecAngin);
+        if ((param.startLatitude != param.endLatitude) || (param.startLongitude != param.endLongitude)) {
+          param.arahAngin = getBearing(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude);
+          param.kecAngin = distance(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude , 0 , 0);
+        }
+
+        //console.log(param.arahAngin);
+        //console.log(param.kecAngin);
       }
     }
   , 2000);
@@ -351,46 +356,67 @@ zeroPort.on('open', function() {
       jumlahClient++;
       console.log('Number of Client : ' + jumlahClient);
 
-      // //get data from arduino
-      // call again to get event
+      // get data from arduino
+      // call again to get event send it to socket io
       zeroPort.on('data', function(data) {
-     
-          socket.emit('kirim', {datahasil:datahasil});  
-
-            socket.emit('dataGraph', {  
-              data : [ param.ketinggian,
+          // send as a JSON
+          socket.emit('kirim', { 
+            datahasil : [
+              param.ketinggian,
               param.temperature,
               param.kelembaban,
               param.tekanan,
               param.arahAngin,
               param.kecAngin,
-              param.co2]
-            });
+              param.latitude,
+              param.longitude,
+              param.co2,
+              param.pitch,
+              param.roll,
+              param.yaw,
+              oneImagePath // path gambar in here for home
+            ]
+          });  
 
-            socket.emit('dataGauge', {  
-              data : [ param.ketinggian,
+          socket.emit('dataGraph', {  
+            data : [ 
+              param.ketinggian,
               param.temperature,
               param.kelembaban,
               param.tekanan,
               param.arahAngin,
               param.kecAngin,
-              param.co2]
-            });
+              param.co2
+            ]
+          });
 
-            socket.emit('dataCoordinate', {  
-              data : [ param.latitude,
-              param.longitude]
-            });
+          socket.emit('dataGauge', {  
+            data : [ 
+              param.ketinggian,
+              param.temperature,
+              param.kelembaban,
+              param.tekanan,
+              param.arahAngin,
+              param.kecAngin,
+              param.co2
+            ]
+          });
 
-            socket.emit('pathGambar' , {
-              data : oneImagePath
-            });
+          socket.emit('dataCoordinate', {  
+            data : [ 
+              param.latitude,
+              param.longitude
+            ]
+          });
 
-            socket.emit('angin' , {
-              data : [ param.arahAngin , param.kecAngin]
-            });
+          socket.emit('angin' , {
+            data : [ 
+              param.arahAngin , 
+              param.kecAngin
+            ]
+          });
  
-        });
+      });
 
   
       //handle disconnect users
