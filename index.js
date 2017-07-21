@@ -28,7 +28,13 @@ app.set('json spaces', 4); //tidy the json code
 var portNumber = 3030;
 server.listen(portNumber); //start http-server on port
 
-var portName = process.argv[2]; //get port number on command
+var portName = process.argv[2]; // get port number on command
+var portAntenna = process.argv[3]; // get port for antenna tracker
+
+/* Coordinate Antenna Tracker */
+// according to antenna GPS
+var trackLatitude = -6.9752429;
+var trackLongitude = 107.6299302;
 
 //variable declare
 var datahasil , 
@@ -251,7 +257,7 @@ zeroPort.on('open', function() {
     //console.log(RAWData);
     //console.log(datahasil.length);
     //send event in web server
-    if (datahasil.length == 14) {
+    if (datahasil.length == 12) {
       if (datahasil[0] == "OK") { //header
       //socket.emit('kirim', {datahasil:datahasil});  //send to html with tag kirim
       valid = true;
@@ -266,21 +272,21 @@ zeroPort.on('open', function() {
       // param.arahAngin   = datahasil[5];
       // param.kecAngin    = datahasil[6];
 
-      if (datahasil[7] != "********** " || datahasil[8] != "0.000000 " || datahasil[8] != "0.000000" ) {
-        param.latitude    = datahasil[7];
-        param.longitude   = datahasil[8];
+      if (datahasil[5] != "********** " || datahasil[6] != "0.000000 " || datahasil[8] != "0.000000" ) {
+        param.latitude    = datahasil[5];
+        param.longitude   = datahasil[6];
       } 
 
-      param.co2         = datahasil[9];
-      param.pitch       = datahasil[10];
-      param.roll        = datahasil[11];
-      param.yaw         = datahasil[12];
+      param.co2         = datahasil[7];
+      param.pitch       = datahasil[8];
+      param.roll        = datahasil[9];
+      param.yaw         = datahasil[10];
       
       
-        if ((datahasil[13] != "IMG") && (datahasil[13] != "")){
+        if ((datahasil[11] != "IMG") && (datahasil[11] != "")){
 
           // check first img data contains FFD8? 
-          if ((datahasil[13].indexOf("FFD8") >= 0) && (count == 0)) {
+          if ((datahasil[11].indexOf("FFD8") >= 0) && (count == 0)) {
             lanjutkan = true;
             param.imgTime = moment().format("HHmmss");
             param.imgAltitude = param.ketinggian;
@@ -290,14 +296,14 @@ zeroPort.on('open', function() {
           // first appear sesuai
           if (lanjutkan == true){
             // tampung gambar
-            gambar = gambar + datahasil[13];
+            gambar = gambar + datahasil[11];
           }
           //console.log(count);
           count++;
 
 
           // check akhir string ada FFD9 (akhir dari JPEG)
-          if (datahasil[13].slice(-4) == "FFD9") {
+          if (datahasil[11].slice(-4) == "FFD9") {
             console.log('Save image ...');
             simpanGambar(gambar);
             lanjutkan = false; //set ke false lanjutkan biar ngcek lagi paspertama
@@ -328,16 +334,16 @@ zeroPort.on('open', function() {
   // calculate kecepatan angin dan arah angin
   setInterval(
     function() {
-      if ((valid == true) && (datahasil[7] != "********** ")) {
+      if ((valid == true) && (datahasil[5] != "********** ")) {
         
         setTimeout( function() {
-          param.startLatitude = datahasil[7];
-          param.startLongitude = datahasil[8];
+          param.startLatitude = datahasil[5];
+          param.startLongitude = datahasil[6];
           // console.log('start');
         } , 1000); //delay 1 secodns
 
-        param.endLatitude = datahasil[7];
-        param.endLongitude = datahasil[8];
+        param.endLatitude = datahasil[5];
+        param.endLongitude = datahasil[6];
         // console.log('end');
 
         if ((param.startLatitude != param.endLatitude) || (param.startLongitude != param.endLongitude)) {
@@ -476,6 +482,31 @@ function getBearing(startLat,startLong,endLat,endLong){
   return (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0;
 }
 
+function getElevation(startLat, startLong, endLat, endLong , alt){
+  startLat = parseFloat(startLat);
+  startLong = parseFloat(startLong);
+  endLat = parseFloat(endLat);
+  endLong = parseFloat(endLong);
+
+  startLat = radians(startLat);
+  startLong = radians(startLong);
+  endLat = radians(endLat);
+  endLong = radians(endLong);
+
+  var delLat = endLat - startLat;
+  var delLon = endLong - startLong;
+
+  var R = 6372795;
+  var q = Math.sin(delLat/2)*Math.sin(delLat/2);
+  var w = Math.cos(startLat)*Math.cos(endLat);
+  var e = Math.sin(delLon/2)*sin(delLon/2);
+  var a = (q + w*e);
+  var c = 2*Math.atan2(Math.sqrt(a) , Math.sqrt(1-a));
+  var distance = c * R;
+
+  return (degrees(Math.atan(alt/distance)));
+}
+
 /**
  * Calculate distance between two points in latitude and longitude taking
  * into account height difference. If you are not interested in height
@@ -507,3 +538,5 @@ function distance(lat1,lon1,lat2,
     return Math.sqrt(distance).toFixed(2);
 
 }
+
+
