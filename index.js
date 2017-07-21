@@ -33,8 +33,9 @@ var portAntenna = process.argv[3]; // get port for antenna tracker
 
 /* Coordinate Antenna Tracker */
 // according to antenna GPS
-var trackLatitude = -6.9752429;
+var trackLatitude = -6.9752429; 
 var trackLongitude = 107.6299302;
+var sudutAzimuth, sudutElevasi;
 
 //variable declare
 var datahasil , 
@@ -47,6 +48,7 @@ var datahasil ,
   valid = false,
   stopped = false,
   lanjutkan = false,
+  checkAntenna = false,
   nomorGambar = 0,
   gambar = '',
   count = 0 ,
@@ -185,7 +187,7 @@ app.get('/listImage' , function(req , res) {
 });
 
 /*----------  Serial COnnection  ----------*/
-// configure Serial Port to connect to Arduino
+// configure Serial Port to connect to Payload
 var zeroPort = new SerialPort(
   portName,
   {
@@ -195,6 +197,21 @@ var zeroPort = new SerialPort(
     parser : SerialPort.parsers.readline('\r\n')
   });
 
+/*----------  Serial COnnection  ----------*/
+// configure Serial Port to connect to Antenna
+if (portAntenna != null) {
+  var antennaSerial = new SerialPort(
+  portAntenna,
+  {
+    baudRate : 9600,
+    databits : 8,
+    parity : 'none',
+    parser : SerialPort.parsers.readline('\r\n')
+  });
+  checkAntenna = true;
+} else {
+  console.log("antenna tracker port is not initialized");
+}
 
 /*===============================
 =            Picture            =
@@ -275,6 +292,13 @@ zeroPort.on('open', function() {
       if (datahasil[5] != "********** " || datahasil[6] != "0.000000 " || datahasil[8] != "0.000000" ) {
         param.latitude    = datahasil[5];
         param.longitude   = datahasil[6];
+
+        // calculate azimuth and elevation
+          sudutAzimuth = parseInt(getBearing(trackLatitude, trackLongitude, param.latitude, param.longitude));
+          sudutElevasi = parseInt(getElevation(trackLatitude, trackLongitude, param.latitude, param.longitude , param.ketinggian));
+        
+        //console.log(sudutAzimuth);
+        //console.log(sudutElevasi);
       } 
 
       param.co2         = datahasil[7];
@@ -327,8 +351,21 @@ zeroPort.on('open', function() {
     } else {
       valid = false;
     }
+   if (checkAntenna) {
+      // antennaSerial.on('open', function() {
+      //   console.log("Antenna Tracker ready!");
 
-    
+      //   //send the sudut
+      //   console.log(sudutAzimuth);
+      //   console.log(sudutElevasi);
+      if (sudutAzimuth != null){
+        console.log(sudutAzimuth);
+         console.log(sudutElevasi);
+        antennaSerial.write(sudutAzimuth + "," + sudutElevasi +"\n");
+      }
+      //});
+         
+    }
   });
 
   // calculate kecepatan angin dan arah angin
@@ -445,10 +482,22 @@ zeroPort.on('open', function() {
       socket.on('takePict' , function(data){
         zeroPort.write('2');
       });
-    
-
     });
+
+    /*=============================================================
+    =            Antenna Tracker azimuth and elevation            =
+    =============================================================*/
+
+    
+    
+    /*=====  End of Antenna Tracker azimuth and elevation  ======*/
+    
+  
 });
+
+// antennaSerial.on('data', function (data) {
+//   console.log('Data:', data);
+// });
 
 
 function radians(n) {
@@ -499,7 +548,7 @@ function getElevation(startLat, startLong, endLat, endLong , alt){
   var R = 6372795;
   var q = Math.sin(delLat/2)*Math.sin(delLat/2);
   var w = Math.cos(startLat)*Math.cos(endLat);
-  var e = Math.sin(delLon/2)*sin(delLon/2);
+  var e = Math.sin(delLon/2)*Math.sin(delLon/2);
   var a = (q + w*e);
   var c = 2*Math.atan2(Math.sqrt(a) , Math.sqrt(1-a));
   var distance = c * R;
@@ -538,5 +587,7 @@ function distance(lat1,lon1,lat2,
     return Math.sqrt(distance).toFixed(2);
 
 }
+
+
 
 
