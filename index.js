@@ -33,9 +33,9 @@ var portAntenna = process.argv[3]; // get port for antenna tracker
 
 /* Coordinate Antenna Tracker */
 // according to antenna GPS
-var trackLatitude = -6.9752429; 
-var trackLongitude = 107.6299302;
-var sudutAzimuth, sudutElevasi;
+var trackLatitude = -6.976132;
+var trackLongitude = 107.630332;
+var sudutAzimuth, sudutElevasi, prevSudutAzimuth, prevSudutElevasi;
 
 //variable declare
 var datahasil , 
@@ -191,7 +191,7 @@ app.get('/listImage' , function(req , res) {
 var zeroPort = new SerialPort(
   portName,
   {
-    baudRate : 115200,
+    baudRate : 57600,
     databits : 8,
     parity : 'none',
     parser : SerialPort.parsers.readline('\r\n')
@@ -203,7 +203,7 @@ if (portAntenna != null) {
   var antennaSerial = new SerialPort(
   portAntenna,
   {
-    baudRate : 9600,
+    baudRate : 57600,
     databits : 8,
     parity : 'none',
     parser : SerialPort.parsers.readline('\r\n')
@@ -289,16 +289,43 @@ zeroPort.on('open', function() {
       // param.arahAngin   = datahasil[5];
       // param.kecAngin    = datahasil[6];
 
-      if (datahasil[5] != "********** " || datahasil[6] != "0.000000 " || datahasil[8] != "0.000000" ) {
+      if (datahasil[5] != "********** " || datahasil[6] != "0.000000 " || datahasil[6] != "0.000000" ) {
         param.latitude    = datahasil[5];
         param.longitude   = datahasil[6];
 
         // calculate azimuth and elevation
+       /*=============================================================
+        =            Antenna Tracker azimuth and elevation            =
+        =============================================================*/
           sudutAzimuth = parseInt(getBearing(trackLatitude, trackLongitude, param.latitude, param.longitude));
           sudutElevasi = parseInt(getElevation(trackLatitude, trackLongitude, param.latitude, param.longitude , param.ketinggian));
+        /*=====  End of Antenna Tracker azimuth and elevation  ======*/
         
         //console.log(sudutAzimuth);
         //console.log(sudutElevasi);
+           if (checkAntenna) {
+            // antennaSerial.on('open', function() {
+            //   console.log("Antenna Tracker ready!");
+
+            //   //send the sudut
+            //   console.log(sudutAzimuth);
+            //   console.log(sudutElevasi);
+              //  console.log("RAW ori: " + sudutAzimuth + "---" + sudutElevasi);
+               // console.log("RAW prev : " + prevSudutAzimuth + "---" + prevSudutElevasi);
+
+            if (sudutAzimuth != null && sudutElevasi != null){
+
+              if (prevSudutElevasi != sudutElevasi || prevSudutAzimuth != sudutAzimuth) {
+                prevSudutElevasi = sudutElevasi;
+                prevSudutAzimuth = sudutAzimuth;
+                //console.log("RAW : " + sudutAzimuth + "---" + sudutElevasi);
+                //  console.log(sudutElevasi);
+                antennaSerial.write(" " + sudutAzimuth + "," + sudutElevasi +'#');
+              }
+            }
+            //});
+         
+          }
       } 
 
       param.co2         = datahasil[7];
@@ -351,21 +378,8 @@ zeroPort.on('open', function() {
     } else {
       valid = false;
     }
-   if (checkAntenna) {
-      // antennaSerial.on('open', function() {
-      //   console.log("Antenna Tracker ready!");
 
-      //   //send the sudut
-      //   console.log(sudutAzimuth);
-      //   console.log(sudutElevasi);
-      if (sudutAzimuth != null){
-        console.log(sudutAzimuth);
-         console.log(sudutElevasi);
-        antennaSerial.write(sudutAzimuth + "," + sudutElevasi +"\n");
-      }
-      //});
-         
-    }
+
   });
 
   // calculate kecepatan angin dan arah angin
@@ -484,15 +498,7 @@ zeroPort.on('open', function() {
       });
     });
 
-    /*=============================================================
-    =            Antenna Tracker azimuth and elevation            =
-    =============================================================*/
-
-    
-    
-    /*=====  End of Antenna Tracker azimuth and elevation  ======*/
-    
-  
+   
 });
 
 // antennaSerial.on('data', function (data) {
