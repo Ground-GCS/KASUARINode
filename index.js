@@ -51,12 +51,12 @@ var datahasil ,
   checkAntenna = false,
   nomorGambar = 0,
   gambar = '',
-  count = 0 ,
+  count = 0,
   oneImagePath = '',
   listGambar = [];
 
 var param = {
-  nama : '621',
+  nama : '621', //header team
   ketinggian : 0 ,
   temperature : 0, 
   kelembaban : 0,
@@ -255,6 +255,17 @@ zeroPort.on('open', function() {
   console.log('Port Open, Server on port ' + portNumber);
 
   var delayMillis = 3000; //3 second
+
+  setTimeout(function() {
+    // set first home to payload, for elevation parameter
+    zeroPort.write("3 " + trackLatitude + "," + trackLongitude +'\n', function(err) {
+    if (err) {
+      return console.log('Error on write: ', err.message);
+    }
+    console.log('Send home, to tracker');
+    });
+  }, 1000);
+
   setTimeout(function() {
     //your code to be executed after 3 second
     zeroPort.write('1', function(err) {
@@ -509,6 +520,7 @@ zeroPort.on('open', function() {
 function radians(n) {
   return n * (Math.PI / 180);
 }
+
 function degrees(n) {
   return n * (180 / Math.PI);
 }
