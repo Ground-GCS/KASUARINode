@@ -258,23 +258,16 @@ zeroPort.on('open', function() {
 
   setTimeout(function() {
     // set first home to payload, for elevation parameter
-    zeroPort.write("3 " + trackLatitude + "," + trackLongitude +'\n', function(err) {
+    zeroPort.write("1 " + trackLatitude + "," + trackLongitude +'\n', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }
-    console.log('Send home, to tracker');
-    });
-  }, 1000);
-
-  setTimeout(function() {
-    //your code to be executed after 3 second
-    zeroPort.write('1', function(err) {
-    if (err) {
-      return console.log('Error on write: ', err.message);
-    }
-    console.log('Started....');
+    console.log('Send home, to tracker..');
+    console.log('Start to receive Data..');
     });
   }, delayMillis);
+
+ 
 
 
   //get data from arduino
@@ -301,6 +294,9 @@ zeroPort.on('open', function() {
       // param.kecAngin    = datahasil[6];
 
       if (datahasil[5] != "********** " || datahasil[6] != "0.000000 " || datahasil[6] != "0.000000" ) {
+       if (!isNaN(datahasil[5]) && !isNaN(datahasil[6])) {
+
+
         param.latitude    = datahasil[5];
         param.longitude   = datahasil[6];
 
@@ -337,6 +333,7 @@ zeroPort.on('open', function() {
             //});
          
           }
+        }
       } 
 
       param.co2         = datahasil[7];

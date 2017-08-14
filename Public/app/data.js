@@ -75,8 +75,8 @@ function update() {
 
        // console.log((360.00-Pitch) + ' ' +  (360.00-Yaw) + ' ' + (360.00-Roll));
         //console.log((Pitch) + ' ' +  (Yaw) + ' ' + (Roll));
-        //box.rotation((360.00-Pitch), (360.00-Yaw), (360.00-Roll)).update();
-        box.rotation((Pitch), (Yaw), (Roll)).update();
+        box.rotation((360.00-Pitch), (360.00-Yaw), (360.00-Roll)).update();
+       //box.rotation((Pitch), (Yaw), (Roll)).update();
 
         });
 
