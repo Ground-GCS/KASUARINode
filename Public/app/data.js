@@ -10,7 +10,7 @@ var imgs;
 
 var stage = Sprite3D.stage(document.querySelector("#sikap"));
 
-var box = Sprite3D.box(100,200,100, ".box1");
+var box = Sprite3D.box(100,150,100, ".cube");
 box.rotation(0,0,0)
 box.update();
 // stage.setInnerHTML("sikap")

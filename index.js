@@ -33,8 +33,8 @@ var portAntenna = process.argv[3]; // get port for antenna tracker
 
 /* Coordinate Antenna Tracker */
 // according to antenna GPS
-var trackLatitude = -6.976132;
-var trackLongitude = 107.630332;
+var trackLatitude = -6.975868;
+var trackLongitude = 107.630172;
 var sudutAzimuth, sudutElevasi, prevSudutAzimuth, prevSudutElevasi;
 
 //variable declare
@@ -203,7 +203,7 @@ if (portAntenna != null) {
   var antennaSerial = new SerialPort(
   portAntenna,
   {
-    baudRate : 57600,
+    baudRate : 115200 ,
     databits : 8,
     parity : 'none',
     parser : SerialPort.parsers.readline('\r\n')
@@ -315,8 +315,8 @@ zeroPort.on('open', function() {
             //   console.log("Antenna Tracker ready!");
 
             //   //send the sudut
-            //   console.log(sudutAzimuth);
-            //   console.log(sudutElevasi);
+               console.log(sudutAzimuth + " ---- "+ sudutElevasi);
+               //console.log();
               //  console.log("RAW ori: " + sudutAzimuth + "---" + sudutElevasi);
                // console.log("RAW prev : " + prevSudutAzimuth + "---" + prevSudutElevasi);
 
@@ -406,8 +406,16 @@ zeroPort.on('open', function() {
         // console.log('end');
 
         if ((param.startLatitude != param.endLatitude) || (param.startLongitude != param.endLongitude)) {
-          param.arahAngin = getBearing(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude);
-          param.kecAngin = distance(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude , 0 , 0);
+          var bearing = getBearing(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude);
+          var dist = distance(param.startLatitude , param.startLongitude , param.endLatitude , param.endLongitude , 0 , 0);
+         
+          if (!isNaN(bearing)) {
+            param.arahAngin = bearing;
+          }
+
+          if (!isNaN(dist)) {
+            param.kecAngin = dist; 
+          }
         }
 
         //console.log(param.arahAngin);
