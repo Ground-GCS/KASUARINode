@@ -21,7 +21,29 @@
     <link rel="stylesheet" href="plugins/Highcharts/css/highcharts.css">
 
     <!-- highchart -->
+      <style>
+        .cube {
+          border: 5px solid white;
+          box-sizing: border-box;
+          transition: transform .5s ease-in-out;
+          /* note: might need some vendor prefixes around here :) */
+        }
 
+        .cube .front,
+        .cube .back {
+          background: rgba(97, 174, 140, 1);
+        }
+
+        .cube .left,
+        .cube .right {
+          background: rgba(232, 38, 38, 1);
+        }
+
+        .cube .top,
+        .cube .bottom {
+          background: rgba(135,135,135,1);
+        }
+    </style>
     
     <!--   <script src="js/angular-canvas-gauge.js"></script>
     <script src="js/angular/angular.js"></script> -->
