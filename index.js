@@ -33,8 +33,8 @@ var portAntenna = process.argv[3]; // get port for antenna tracker
 
 /* Coordinate Antenna Tracker */
 // according to antenna GPS
-var trackLatitude = -6.975868;
-var trackLongitude = 107.630172;
+var trackLatitude = -6.976139;
+var trackLongitude = 107.630226;
 var sudutAzimuth, sudutElevasi, prevSudutAzimuth, prevSudutElevasi;
 
 //variable declare
