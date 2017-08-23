@@ -33,8 +33,8 @@ var portAntenna = process.argv[3]; // get port for antenna tracker
 
 /* Coordinate Antenna Tracker */
 // according to antenna GPS
-var trackLatitude = -6.976139;
-var trackLongitude = 107.630226;
+var trackLatitude = -7.658567;
+var trackLongitude = 107.689918;
 var sudutAzimuth, sudutElevasi, prevSudutAzimuth, prevSudutElevasi;
 
 //variable declare
@@ -336,7 +336,8 @@ zeroPort.on('open', function() {
         }
       } 
 
-      param.co2         = datahasil[7];
+      // param.co2         = datahasil[7];
+      param.co2         = co2Correction(datahasil[7],param.tekanan,param.temperature).toFixed(2);
       param.pitch       = datahasil[8];
       param.roll        = datahasil[9];
       param.yaw         = datahasil[10];
@@ -349,7 +350,7 @@ zeroPort.on('open', function() {
             lanjutkan = true;
             param.imgTime = moment().format("HHmmss");
             param.imgAltitude = param.ketinggian;
-            console.log('setlanjutkantrue');
+            console.log('Capturing...');
           }
 
           // first appear sesuai
@@ -414,7 +415,8 @@ zeroPort.on('open', function() {
           }
 
           if (!isNaN(dist)) {
-            param.kecAngin = dist; 
+            if (dist < 100)
+              param.kecAngin = dist; 
           }
         }
 
@@ -551,7 +553,10 @@ function getBearing(startLat,startLong,endLat,endLong){
        dLong = (2.0 * Math.PI + dLong);
   }
 
-  return (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0;
+  var bearingDegree = (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0; 
+  
+  if (!Number.isNaN(bearingDegree))
+    return bearingDegree;
 }
 
 function getElevation(startLat, startLong, endLat, endLong , alt){
@@ -576,7 +581,10 @@ function getElevation(startLat, startLong, endLat, endLong , alt){
   var c = 2*Math.atan2(Math.sqrt(a) , Math.sqrt(1-a));
   var distance = c * R;
 
-  return (degrees(Math.atan(alt/distance)));
+  var elev = degrees(Math.atan(alt/distance));
+  
+  if (!Number.isNaN(elev))
+    return elev;
 }
 
 /**
@@ -607,8 +615,23 @@ function distance(lat1,lon1,lat2,
 
     var distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
-    return Math.sqrt(distance).toFixed(2);
+    if (distance < 100)
+      return Math.sqrt(distance).toFixed(2);
 
+}
+
+/**
+ * Source :
+ * http://www.vaisala.com/Vaisala%20Documents/Application%20notes/CEN-TIA-Parameter-How-to-measure-CO2-Application-note-B211228EN-A.pdf
+ * where ppm is Co2 , hpa is pressure , and tmp is temperature
+ */
+
+function co2Correction(ppm , hpa , temp) {
+  ppm = parseInt(ppm);
+  hpa = parseInt(hpa);
+  temp = parseInt(temp);
+
+  return (ppm * (hpa / 1013) * (298/(273 + temp))) + 55;
 }
 
 
