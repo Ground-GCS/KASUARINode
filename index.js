@@ -514,6 +514,12 @@ zeroPort.on('open', function() {
       socket.on('takePict' , function(data){
         zeroPort.write('2');
       });
+
+      socket.on('savingData' , function(data){
+        console.log('Save data..')
+        logger.write(param.data() + '\r\n'); //save log
+      });
+      
     });
 
    
